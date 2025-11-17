@@ -1321,11 +1321,11 @@ function SiteNav({
     { label: "(S)", type: "internal" as const, to: "#top" },
 
     {
-      label: "GET A QUOTE",
+      label: "QUOTES",
       type: "quote" as const,
     },
     {
-      label: "SHIP NOW",
+      label: "SHIP",
       type: "external" as const,
       href: "https://wa.me/447304178216?text=Hi%20Sprnt%2C%20I%20want%20to%20ship%20a%20parcel.",
     },
