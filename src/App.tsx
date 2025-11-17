@@ -1,7 +1,6 @@
 import React from "react";
 import { Routes, Route, Link } from "react-router-dom";
-import Track from "./pages/Track";
-import Ship from "./pages/Ship";
+
 import Login from "./pages/Login";
 
 const COMMITMENT_STEPS = [
@@ -643,10 +642,14 @@ const QUOTE_PRICE_MAP: Record<string, number> = {
 
 export default function App() {
   const [isQuoteOpen, setIsQuoteOpen] = React.useState(false);
+  const [isTrackOpen, setIsTrackOpen] = React.useState(false);
 
   return (
     <div className="min-h-screen bg-black relative">
-      <SiteNav onOpenQuote={() => setIsQuoteOpen(true)} />
+      <SiteNav
+        onOpenQuote={() => setIsQuoteOpen(true)}
+        onOpenTrack={() => setIsTrackOpen(true)}
+      />
       <LandingHero />
       <div className="h-screen" /> {/* spacer */}
       <SectionOne />
@@ -655,11 +658,10 @@ export default function App() {
       <Marquee2 />
       <FooterSection />
       <Routes>
-        <Route path="/track" element={<Track />} />
-        <Route path="/ship" element={<Ship />} />
         <Route path="/login" element={<Login />} />
       </Routes>
       {isQuoteOpen && <QuoteModal onClose={() => setIsQuoteOpen(false)} />}
+      {isTrackOpen && <TrackingModal onClose={() => setIsTrackOpen(false)} />}
     </div>
   );
 }
@@ -1029,7 +1031,292 @@ function QuoteModal({ onClose }: { onClose: () => void }) {
   );
 }
 
-function SiteNav({ onOpenQuote }: { onOpenQuote: () => void }) {
+const CITY_LOCATIONS = [
+  { city: "Lagos", label: "Lagos, Nigeria", lat: 6.5244, lng: 3.3792 },
+  { city: "Accra", label: "Accra, Ghana", lat: 5.6037, lng: -0.187 },
+  {
+    city: "Abidjan",
+    label: "Abidjan, Côte d’Ivoire",
+    lat: 5.3453,
+    lng: -4.0244,
+  },
+  { city: "Dakar", label: "Dakar, Senegal", lat: 14.7167, lng: -17.4677 },
+  { city: "Lome", label: "Lomé, Togo", lat: 6.1375, lng: 1.2123 },
+  { city: "Cairo", label: "Cairo, Egypt", lat: 30.0444, lng: 31.2357 },
+  { city: "Luanda", label: "Luanda, Angola", lat: -8.8383, lng: 13.2344 },
+  { city: "Mombasa", label: "Mombasa, Kenya", lat: -4.0435, lng: 39.6682 },
+  {
+    city: "Cape Town",
+    label: "Cape Town, South Africa",
+    lat: -33.9249,
+    lng: 18.4241,
+  },
+  {
+    city: "Dar es Salam",
+    label: "Dar es Salaam, Tanzania",
+    lat: -6.7924,
+    lng: 39.2083,
+  },
+];
+
+type TrackingLocation = {
+  city: string;
+  label: string;
+  lat: number;
+  lng: number;
+};
+
+function pickCityFromTracking(trackingId: string): TrackingLocation {
+  if (!trackingId) return CITY_LOCATIONS[0];
+
+  const sum = trackingId
+    .split("")
+    .reduce((acc, ch) => acc + ch.charCodeAt(0), 0);
+
+  return CITY_LOCATIONS[sum % CITY_LOCATIONS.length];
+}
+
+function TrackingModal({ onClose }: { onClose: () => void }) {
+  const [submitted, setSubmitted] = React.useState(false);
+  const [trackingInfo, setTrackingInfo] = React.useState<{
+    trackingId: string;
+    reference?: string;
+    email?: string;
+    phone?: string;
+    location: TrackingLocation;
+  } | null>(null);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    const trackingId = ((data.get("trackingId") as string) || "").trim();
+    const reference = ((data.get("reference") as string) || "").trim();
+    const email = ((data.get("email") as string) || "").trim();
+    const phone = ((data.get("phone") as string) || "").trim();
+
+    const location = pickCityFromTracking(trackingId);
+
+    setTrackingInfo({
+      trackingId,
+      reference,
+      email,
+      phone,
+      location,
+    });
+    setSubmitted(true);
+  };
+
+  // map placeholder
+  const markerStyle =
+    trackingInfo &&
+    (() => {
+      const { lat, lng } = trackingInfo.location;
+      const x = ((lng + 180) / 360) * 100; // 0–100%
+      const y = ((90 - lat) / 180) * 100; // 0–100%
+      return {
+        left: `${x}%`,
+        top: `${y}%`,
+      };
+    })();
+
+  return (
+    <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/70 backdrop-blur">
+      <div className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-[#111111] border border-sprntBorder px-5 py-6 md:px-8 md:py-8">
+        {/* CLOSE */}
+        <button
+          type="button"
+          onClick={onClose}
+          className="absolute right-4 top-3 text-[16px] uppercase tracking-[0.16em] text-sprntMuted font-pp hover:text-sprntAccent"
+        >
+          X
+        </button>
+
+        {/* HEADER */}
+        <div className="space-y-2 pr-10">
+          <h2 className="text-[24px] md:text-[32px] leading-tight font-pp">
+            Track a parcel.
+          </h2>
+          <p className="text-[12px] md:text-[16px] text-sprntText tracking-tight leading-tight">
+            Locations shown are{" "}
+            <span className="text-sprntAccent">approximate</span> and for
+            indicative tracking only.
+          </p>
+        </div>
+
+        {/* FORM — hides after submit */}
+        {!trackingInfo && (
+          <form onSubmit={handleSubmit} className="mt-6 space-y-8">
+            {/* TRACKING */}
+            <section className="space-y-3">
+              <h3 className="text-[16px] uppercase text-sprntText font-pp tracking-tight">
+                TRACKING DETAILS
+              </h3>
+              <div className="flex flex-col gap-1">
+                <label className="text-[11px] uppercase tracking-[0.16em] text-sprntText font-pp tracking-tight">
+                  Tracking number
+                </label>
+                <input
+                  required
+                  name="trackingId"
+                  placeholder="e.g. SPRNT-90642-ABC123"
+                  className="w-full bg-[#151515] border border-sprntBorder px-3 py-2 text-[12px] md:text-sm font-ocr tracking-tight focus:outline-none focus:border-sprntAccent"
+                />
+              </div>
+
+              <div className="flex flex-col gap-1">
+                <label className="text-[11px] uppercase tracking-[0.16em] text-sprntText font-pp tracking-tight">
+                  Reference (optional)
+                </label>
+                <input
+                  name="reference"
+                  placeholder="Order ID, name, or internal reference"
+                  className="w-full bg-[#151515] border border-sprntBorder px-3 py-2 text-[12px] md:text-sm font-ocr tracking-tight focus:outline-none focus:border-sprntAccent"
+                />
+              </div>
+            </section>
+
+            {/* CONTACT (for context, even if not used programmatically yet) */}
+            <section className="space-y-3">
+              <h3 className="text-[16px] uppercase text-sprntText font-pp tracking-tight">
+                CONTACT
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div className="flex flex-col gap-1">
+                  <label className="text-[11px] uppercase tracking-[0.16em] text-sprntText font-pp tracking-tight">
+                    Email (optional)
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="you@example.com"
+                    className="w-full bg-[#151515] border border-sprntBorder px-3 py-2 text-[12px] md:text-sm font-ocr tracking-tight focus:outline-none focus:border-sprntAccent"
+                  />
+                </div>
+                <div className="flex flex-col gap-1">
+                  <label className="text-[11px] uppercase tracking-[0.16em] text-sprntText font-pp tracking-tight">
+                    Phone / WhatsApp (optional)
+                  </label>
+                  <input
+                    name="phone"
+                    placeholder="+44… or +234…"
+                    className="w-full bg-[#151515] border border-sprntBorder px-3 py-2 text-[12px] md:text-sm font-ocr tracking-tight focus:outline-none focus:border-sprntAccent"
+                  />
+                </div>
+              </div>
+            </section>
+
+            {/* SUBMIT */}
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 pt-4 border-t border-sprntBorder">
+              <p className="text-[11px] text-sprntText max-w-md pr-8">
+                Locations shown are{" "}
+                <span className="text-sprntAccent">approximate</span> and for
+                indicative tracking only.
+              </p>
+              <button
+                type="submit"
+                className="
+                  inline-flex items-center justify-center
+                  px-5 py-2.5
+                  text-[12px] md:text-[10px]
+                  tracking-[0.2em] uppercase font-ocr
+                  border border-sprntAccent
+                  bg-[#151515]
+                  text-sprntAccent
+                  transition-colors
+                  hover:bg-sprntAccent
+                  hover:text-sprntBg
+                  hover:border-sprntAccent
+                "
+              >
+                Locate parcel
+              </button>
+            </div>
+
+            {submitted && !trackingInfo && (
+              <p className="text-[11px] text-sprntAccent mt-2">
+                Something went wrong. Please try again.
+              </p>
+            )}
+          </form>
+        )}
+
+        {/* RESULT VIEW — map + details */}
+        {trackingInfo && (
+          <div className="mt-6 space-y-4">
+            <div className="space-y-1">
+              <p className="text-[11px] uppercase tracking-[0.16em] text-sprntText font-pp tracking-tight">
+                CURRENT STATUS
+              </p>
+              <p className="text-[16px] md:text-[20px] font-pp text-sprntText leading-tight">
+                Your parcel was last seen – near{" "}
+                <span className="text-sprntAccent">
+                  {trackingInfo.location.label}
+                </span>{" "}
+                1 minutes ago and is making its way to you.
+              </p>
+              <p className="text-[11px] text-sprntText font-ocr tracking-tight pt-2">
+                Tracking ID: {trackingInfo.trackingId}
+                {trackingInfo.reference && (
+                  <> · Ref: {trackingInfo.reference}</>
+                )}
+              </p>
+            </div>
+
+            {/* MAP */}
+            <div className="mt-2 h-64 md:h-72 bg-[#151515] border border-sprntBorder rounded-sm relative overflow-hidden">
+              {/* Optional: put a placeholder map image in /public/map-placeholder.png */}
+              <img
+                src="/map-placeholder.png"
+                alt="Couldn't load map"
+                className="w-full h-full object-cover opacity-60"
+              />
+
+              {markerStyle && (
+                <div
+                  className="absolute w-4 h-4 rounded-full bg-sprntAccent border-2 border-sprntBg shadow-lg"
+                  style={{
+                    transform: "translate(-50%, -50%)",
+                    ...markerStyle,
+                  }}
+                />
+              )}
+
+              <div className="absolute left-4 bottom-4 bg-black/1  text-[10px] font-ocr text-sprntText  leading-tight">
+                <div>{trackingInfo.location.label}</div>
+                <div>
+                  Lat {trackingInfo.location.lat.toFixed(4)}, Lon{" "}
+                  {trackingInfo.location.lng.toFixed(4)}
+                </div>
+                <div className="text-sprntAccent mt-[2px] leading-tight">
+                  {new Date().toLocaleTimeString([], {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}
+                </div>
+              </div>
+            </div>
+
+            {/* FOOTER TEXT */}
+            <p className="text-[11px] text-[#7f7f7f] font-pp tracking-tight">
+              For exact status, handover times, and delivery ETA, contact{" "}
+              <span className="text-sprntAccent">+44 (0) 730 4178 216 </span>
+            </p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function SiteNav({
+  onOpenQuote,
+  onOpenTrack,
+}: {
+  onOpenQuote: () => void;
+  onOpenTrack: () => void;
+}) {
   const navItems = [
     { label: "(S)", type: "internal" as const, to: "#top" },
 
@@ -1183,27 +1470,25 @@ function SiteNav({ onOpenQuote }: { onOpenQuote: () => void }) {
           <NavTag>{year}</NavTag>
         </div>
 
-        {/* DASHBOARD BUTTON (visible on desktop, right of dates) */}
-        <Link
-          to="/track"
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
+          type="button"
+          onClick={onOpenTrack}
           className="
-      inline-flex items-center
-      bg-[#151515]
-      border border-sprntAccent
-      px-3 py-[4px] text-[9px] tracking-[0.14em]
-      md:px-5 md:py-[6px] md:text-[11px] md:tracking-[0.1em]
-      uppercase
-      text-sprntAccent
-      transition-colors
-      hover:bg-sprntAccent
-      hover:text-sprntBg
-      hover:border-sprntAccent
-    "
+    inline-flex items-center
+    bg-[#151515]
+    border border-sprntAccent
+    px-3 py-[4px] text-[9px] tracking-[0.14em] 
+    md:px-5 md:py-[6px] md:text-[11px] md:tracking-[0.1em] 
+    uppercase 
+    text-sprntAccent
+    transition-colors
+    hover:bg-sprntAccent
+    hover:text-sprntBg
+    hover:border-sprntAccent
+  "
         >
           TRACK A PARCEL
-        </Link>
+        </button>
       </div>
     </header>
   );
