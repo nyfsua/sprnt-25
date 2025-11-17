@@ -1462,9 +1462,9 @@ function SiteNav({
       </div>
 
       {/* RIGHT: date + dashboard */}
-      <div className="hidden md:flex items-center gap-3 font-ocr">
+      <div className=" md:flex items-center gap-3 font-ocr">
         {/* DATE TAGS (visible on desktop, left of button) */}
-        <div className="flex items-center gap-[2px]">
+        <div className="hidden md:flex items-center gap-[2px]">
           <NavTag>{day}</NavTag>
           <NavTag>{month}</NavTag>
           <NavTag>{year}</NavTag>
@@ -1487,7 +1487,7 @@ function SiteNav({
     hover:border-sprntAccent
   "
         >
-          TRACK A PARCEL
+          TRACKING
         </button>
       </div>
     </header>
