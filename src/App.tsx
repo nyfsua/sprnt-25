@@ -2,7 +2,6 @@ import React from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import Track from "./pages/Track";
 import Ship from "./pages/Ship";
-import Quote from "./pages/Quote";
 import Login from "./pages/Login";
 
 const COMMITMENT_STEPS = [
@@ -189,13 +188,38 @@ const TABLE_DATA = {
   },
 };
 
+// Very simple example – change numbers to match your table.
+const QUOTE_PRICE_MAP: Record<string, number> = {
+  "Documents & Letters": 3,
+  "Small Parcels (500g)": 5,
+  "Clothing & Shoes (1kg)": 7,
+  "Packaged Food (1kg)": 8,
+  "Perfumes, Toiletries (1kg)": 7,
+  "Wigs, Extensions, Hair Products (1kg)": 10,
+  "Gadgets (4kg and less)": 15,
+  "Luxury Items (1kg, £299+)": 20,
+  "Backpack (3kg)": 100,
+  "Briefcase (5kg)": 200,
+  "Duffel Bag (15kg)": 400,
+  "Size 28 Suitcase (23kg)": 500,
+  "Size 32 Suitcase (32kg)": 700,
+  "Size 38 Suitcase (45kg)": 800,
+  "Checkered Woven 'GMG' Bag (25kg)": 520,
+  "Checkered Woven GMG Bag (38kg)": 750,
+  'Checkered Woven GMG Bag (50kg)': 850,
+  Other: 20,
+};
+
+
 
 
 
 export default function App() {
+  const [isQuoteOpen, setIsQuoteOpen] = React.useState(false);
+
   return (
     <div className="min-h-screen bg-black relative">
-      <SiteNav />
+      <SiteNav onOpenQuote={() => setIsQuoteOpen(true)} />
       <LandingHero />
       <div className="h-screen" /> {/* spacer */}
       <SectionOne />
@@ -206,26 +230,405 @@ export default function App() {
       <Routes>
         <Route path="/track" element={<Track />} />
         <Route path="/ship" element={<Ship />} />
-        <Route path="/quote" element={<Quote />} />
         <Route path="/login" element={<Login />} />
       </Routes>
+
+      {isQuoteOpen && (
+        <QuoteModal onClose={() => setIsQuoteOpen(false)} />
+      )}
+
     </div>
   );
 }
 
-function SiteNav() {
+function QuoteModal({ onClose }: { onClose: () => void }) {
+  const [submitted, setSubmitted] = React.useState(false);
+  const [quote, setQuote] = React.useState<{
+    price: number;
+    currency: string;
+    from: string;
+    to: string;
+    parcelType: string;
+    weight: number;
+    name: string;
+  } | null>(null);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    const from = ((data.get("from") as string) || "").trim();
+    const to = ((data.get("to") as string) || "").trim();
+    const parcelTypeRaw = (data.get("parcelType") as string) || "Other";
+    const parcelType = parcelTypeRaw || "Other";
+    const weightRaw = data.get("weight") as string;
+    const weight = weightRaw ? Number(weightRaw) : 0;
+
+    const name = ((data.get("name") as string) || "").trim();
+    const email = ((data.get("email") as string) || "").trim();
+    const whatsapp = ((data.get("whatsapp") as string) || "").trim();
+    const notes = ((data.get("notes") as string) || "").trim();
+
+    const base = QUOTE_PRICE_MAP[parcelType] ?? QUOTE_PRICE_MAP["Other"];
+    const price = base; // you can layer weight-based logic later
+    const currency = "£";
+
+    setQuote({
+      price,
+      currency,
+      from,
+      to,
+      parcelType,
+      weight,
+      name,
+    });
+
+    setSubmitted(true);
+  };
+
+  // build mailto and WhatsApp links when quote is available
+  // replace with your real WhatsApp number in international format
+const SPRNT_WHATSAPP_NUMBER = "447304178216";
+
+const whatsappShipNowHref =
+  quote &&
+  (() => {
+    const textLines = [
+      `Hi Sprnt – I'd like to ship a parcel asap.`,
+      ``,
+      `Name: ${quote.name || "-"}`,
+      `Route: ${quote.from || "?"} → ${quote.to || "?"}`,
+      `Parcel: ${quote.parcelType} (~${quote.weight || "?"}kg)`,
+      ``,
+      `Indicative price you showed me: ${quote.currency}${quote.price.toFixed(
+        2
+      )}.`,
+      ``,
+      `Please confirm, send payment details and drop-off instructions.`,
+    ];
+    const text = encodeURIComponent(textLines.join("\n"));
+    return `https://wa.me/${SPRNT_WHATSAPP_NUMBER}?text=${text}`;
+  })();
+
+const whatsappScheduleHref =
+  quote &&
+  (() => {
+    const textLines = [
+      `Hi Sprnt – I'd like to schedule a shipment for next week.`,
+      ``,
+      `Name: ${quote.name || "-"}`,
+      `Route: ${quote.from || "?"} → ${quote.to || "?"}`,
+      `Parcel: ${quote.parcelType} (~${quote.weight || "?"}kg)`,
+      ``,
+      `Indicative price you showed me: ${quote.currency}${quote.price.toFixed(
+        2
+      )}.`,
+      ``,
+      `Please confirm availability next week and share next steps.`,
+    ];
+    const text = encodeURIComponent(textLines.join("\n"));
+    return `https://wa.me/${SPRNT_WHATSAPP_NUMBER}?text=${text}`;
+  })();
+
+
+
+  return (
+    <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/70 backdrop-blur">
+      <div className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-[#111111] border border-sprntBorder px-5 py-6 md:px-8 md:py-8">
+        {/* CLOSE */}
+        <button
+          type="button"
+          onClick={onClose}
+          className="absolute right-4 top-3 text-[16px] uppercase tracking-[0.16em] text-sprntMuted font-pp hover:text-sprntAccent"
+        >
+          X
+        </button>
+        
+
+        {/* HEADER */}
+        <div className="space-y-2 pr-10">
+          <h2 className="text-[24px] md:text-[32px] leading-tight font-pp">
+            Estimated cost of your next shipment.
+          </h2>
+          <p className="text-[12px] md:text-[16px] text-sprntText tracking-tight leading-tight">
+            Rates shared are{" "}
+                <span className="text-sprntAccent">indicative only</span> and may
+                change based on final weight, dimensions, route and customs.
+          </p>
+        </div>
+
+        {/* FORM */}
+        {!quote && (
+        <form onSubmit={handleSubmit} className="mt-6 space-y-8">
+          {/* ROUTE */}
+          <section className="space-y-3">
+            <h3 className="text-[16px] uppercase text-sprntText font-pp tracking-tight">
+              ROUTE
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="flex flex-col gap-1">
+                <label className="text-[11px] uppercase tracking-[0.16em] text-sprntText font-pp tracking-tight">
+                  From
+                </label>
+                <input
+                  required
+                  name="from"
+                  placeholder="City, Country"
+                  className="w-full bg-[#151515] border border-sprntBorder px-3 py-2 text-[12px] md:text-sm focus:outline-none focus:border-sprntAccent font-ocr tracking-tight"
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <label className="text-[11px] uppercase tracking-[0.16em] text-sprntText font-pp tracking-tight">
+                  To
+                </label>
+                <input
+                  required
+                  name="to"
+                  placeholder="City, Country"
+                  className="w-full bg-[#151515] border border-sprntBorder px-3 py-2 text-[12px] md:text-sm focus:outline-none focus:border-sprntAccent font-ocr tracking-tight"
+                />
+              </div>
+            </div>
+          </section>
+
+          {/* PARCEL */}
+          <section className="space-y-3">
+            <h3 className="text-[16px] uppercase text-sprntText font-pp tracking-tight">
+              PARCEL
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="flex flex-col gap-1">
+                <label className="text-[11px] uppercase tracking-[0.16em] text-sprntText font-pp tracking-tight">
+                  Parcel type
+                </label>
+                <select
+                  required
+                  name="parcelType"
+                  className="w-full bg-[#151515] border border-sprntBorder px-3 py-2 text-[12px] md:text-sm focus:outline-none focus:border-sprntAccent font-ocr tracking-tight"
+                >
+                  <option value="">Select a parcel type</option>
+                  <option>Documents &amp; Letters</option>
+                  <option>Small Parcels (500g)</option>
+                  <option>Clothing &amp; Shoes (1kg)</option>
+                  <option>Packaged Food (1kg)</option>
+                  <option>Perfumes, Toiletries (1kg)</option>
+                  <option>Wigs, Extensions, Hair Products (1kg)</option>
+                  <option>Gadgets (4kg and less)</option>
+                  <option>Luxury Items (1kg, £299+)</option>
+                  <option>Backpack (3kg)</option>
+                  <option>Briefcase (5kg)</option>
+                  <option>Duffel Bag (15kg)</option>
+                  <option>Size 28 Suitcase (23kg)</option>
+                  <option>Size 32 Suitcase (32kg)</option>
+                  <option>Size 38 Suitcase (45kg)</option>
+                  <option>Checkered Woven 'GMG' Bag (25kg)</option>
+                  <option>Checkered Woven GMG Bag (38kg)</option>
+                  <option>Checkered Woven GMG Bag (50kg)</option>
+                  <option>Other</option>
+                </select>
+              </div>
+
+              <div className="flex flex-col gap-1">
+                <label className="text-[11px] uppercase tracking-[0.16em] text-sprntText font-pp tracking-tight">
+                  Approx. weight (kg)
+                </label>
+                <input
+                  required
+                  type="number"
+                  step="0.1"
+                  min="0"
+                  name="weight"
+                  placeholder="e.g. 15"
+                  className="w-full bg-[#151515] border border-sprntBorder px-3 py-2 text-[12px] md:text-sm focus:outline-none focus:border-sprntAccent font-ocr tracking-tight"
+                />
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <label className="text-[16px] uppercase text-sprntText font-pp tracking-tight">
+                Notes (optional)
+              </label>
+              <textarea
+                name="notes"
+                rows={3}
+                placeholder="Fragile? Time-sensitive? Anything unusual?"
+                className="w-full bg-[#151515] border border-sprntBorder px-3 py-2 text-[12px] md:text-sm focus:outline-none focus:border-sprntAccent font-ocr tracking-tight"
+              />
+            </div>
+          </section>
+
+          {/* CONTACT */}
+          <section className="space-y-3">
+            <h3 className="text-[16px] uppercase text-sprntText font-pp tracking-tight">
+              CONTACT
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="flex flex-col gap-1">
+                <label className="text-[11px] uppercase tracking-[0.16em] text-sprntText font-pp tracking-tight">
+                  Name
+                </label>
+                <input
+                  required
+                  name="name"
+                  placeholder="Your full name"
+                  className="w-full bg-[#151515] border border-sprntBorder px-3 py-2 text-[12px] md:text-sm focus:outline-none focus:border-sprntAccent font-ocr tracking-tight"
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <label className="text-[11px] uppercase tracking-[0.16em] text-sprntText font-pp tracking-tight">
+                  Email
+                </label>
+                <input
+                  required
+                  type="email"
+                  name="email"
+                  placeholder="you@example.com"
+                  className="w-full bg-[#151515] border border-sprntBorder px-3 py-2 text-[12px] md:text-sm focus:outline-none focus:border-sprntAccent font-ocr tracking-tight"
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="flex flex-col gap-1">
+                <label className="text-[11px] uppercase tracking-[0.16em] text-sprntText font-pp tracking-tight">
+                  WhatsApp
+                </label>
+                <input
+                  required
+                  name="whatsapp"
+                  placeholder="+44… or +234…"
+                  className="w-full bg-[#151515] border border-sprntBorder px-3 py-2 text-[12px] md:text-sm focus:outline-none focus:border-sprntAccent font-ocr tracking-tight"
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <label className="text-[11px] uppercase tracking-[0.16em] text-sprntText font-pp tracking-tight">
+                  Preferred contact
+                </label>
+                <select
+                  name="contactPreference"
+                  className="w-full bg-[#151515] border border-sprntBorder px-3 py-2 text-[12px] md:text-sm focus:outline-none focus:border-sprntAccent font-ocr tracking-tight"
+                >
+                  <option>Email</option>
+                  <option>WhatsApp</option>
+                  <option>Either</option>
+                </select>
+              </div>
+            </div>
+          </section>
+
+          {/* FOOTER + QUOTE DISPLAY */}
+          <div className="flex flex-col gap-3 pt-4 border-t border-sprntBorder">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+              <p className="text-[11px] text-sprntText max-w-md pr-8">
+                Rates shared are{" "}
+                <span className="text-sprntAccent">indicative only</span> and may
+                change based on final weight, dimensions, route and customs.
+              </p>
+              <button
+                type="submit"
+                className="
+                  inline-flex items-center justify-center
+                  px-5 py-2.5
+                  text-[12px] md:text-[10px]
+                  tracking-[0.2em] uppercase font-ocr
+                  border border-sprntAccent
+                  bg-[#151515]
+                  uppercase
+                  text-sprntAccent
+                  transition-colors
+                  hover:bg-sprntAccent
+                  hover:text-sprntBg
+                  hover:border-sprntAccent
+                "
+              >
+                Request quote
+              </button>
+            </div>
+
+            
+
+            {submitted && !quote && (
+              <p className="text-[11px] text-sprntAccent mt-2">
+                Something went wrong calculating your quote. Please try again.
+              </p>
+            )}
+          </div>
+        </form>
+        )}
+
+        {quote && (
+              <div className="mt-3 space-y-2 border border-sprntBorder bg-[#151515] px-4 py-3">
+                <p className="text-[24px] font-pp">
+                  Estimated price:{" "}
+                  <span className="font-semibold">
+                    {quote.currency}
+                    {quote.price.toFixed(2)}
+                  </span>
+                </p>
+                <p className="text-[11px] text-sprntText">
+                  {quote.parcelType} (~{quote.weight || "?"}kg) |{" "}
+                  {quote.from || "?"} → {quote.to || "?"}
+                </p>
+
+                <div className="flex flex-wrap gap-2 pt-2">
+                  {whatsappShipNowHref && (
+                    <a
+                      href={whatsappShipNowHref}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="
+                        inline-flex items-center justify-center
+                        px-3 py-1.5 font-ocr
+                        text-[10px] uppercase tracking-[0.18em]
+                        border border-sprntAccent
+                        text-sprntAccent
+                        hover:bg-sprntAccent hover:text-sprntBg
+                        transition-colors
+                      "
+                    >
+                      Ship Now
+                    </a>
+                  )}
+                  {whatsappScheduleHref && (
+                    <a
+                      href={whatsappScheduleHref}
+                      className="
+                        inline-flex items-center justify-center
+                        px-3 py-1.5 font-ocr
+                        text-[10px] uppercase tracking-[0.18em]
+                        border border-sprntBorder
+                        text-sprntText
+                        hover:border-sprntAccent hover:text-sprntAccent
+                        transition-colors
+                      "
+                    >
+                      Schedule shipping
+                    </a>
+                  )}
+                </div>
+              </div>
+            )}
+      </div>
+      
+    </div>
+    
+  );
+}
+
+
+
+function SiteNav({ onOpenQuote }: { onOpenQuote: () => void }) {
   const navItems = [
     { label: "(S)", type: "internal" as const, to: "#top" },
 
     {
       label: "GET A QUOTE",
-      type: "external" as const,
-      href: "/quote",
+      type: "quote" as const,
     },
     {
       label: "SHIP NOW",
       type: "external" as const,
-      href: "/ship",
+      href: "https://wa.me/447304178216?text=Hi%20Sprnt%2C%20I%20want%20to%20ship%20a%20parcel.",
     },
     {
       label: "SUPPORT",
@@ -303,6 +706,35 @@ function SiteNav() {
 
               );
             }
+
+            if (item.type === "quote") {
+    return (
+      <button
+        key={item.label}
+        type="button"
+        onClick={onOpenQuote}
+        className="
+          inline-flex items-center
+          bg-[#151515]
+          backdrop-blur-md
+          border border-sprntBorder
+          px-2 py-[2px]
+          text-[8px]
+          tracking-[0.14em]
+          md:px-4 md:py-[6px]
+          md:text-[11px]
+          md:tracking-[0.22em]
+          uppercase
+          text-sprntText
+          transition-colors
+          hover:text-sprntAccent
+          hover:border-sprntAccent
+        "
+      >
+        {item.label}
+      </button>
+    );
+  }
 
             return (
               <a
@@ -751,9 +1183,14 @@ function FooterSection() {
     tracking-tight"
         >
           Might as well {" "}
-          <Link to="/ship" className="text-sprntAccent">
-            ship something
-          </Link>{" "}
+          <a
+  href="https://wa.me/447304178216?text=Hi%20Sprnt%2C%20I%20want%20to%20ship%20a%20parcel."
+  target="_blank"
+  rel="noopener noreferrer"
+  className="text-sprntAccent"
+>
+  ship something
+</a>{" "}
           if you’ve scrolled this far. That said, we’ve got other cool
           products.
         </p>
