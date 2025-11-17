@@ -35,137 +35,180 @@ const COMMITMENT_STEPS = [
 const TABLE_DATA = {
   fromYou: {
     label: "FROM YOU",
-    cities: ["Lagos", "Accra", "Abidjan", "Dakar", "Cairo", "Luanda", "Mombasa", "Cape Town", "Lome", "Dar es Salam", "Harare" ],
+    cities: ["Lagos", "Accra", "Abidjan", "Dakar", "Lome", "Cairo", "Luanda", "Mombasa", "Cape Town", "Dar es Salam", "Harare" ],
     rows: [
       {
         label: "Documents & Letters",
-        prices: ["£2", "£2", "£2", "£2.50", "£2.50", "£2.50", "£3", "£3"],
+        prices: ["£3", "£3", "£3", "£3", "£3.50", "£4", "£5", "£5", "£5", "£5", "£5"],
       },
       {
         label: "Small Parcels (500g)",
-        prices: ["£3", "£3", "£3", "£3", "£3", "£5", "£5", "£5"],
+        prices: ["£5", "£5", "£5", "£5", "£5.50", "£7", "£7", "£7", "£7", "£7", "£7"],
       },
       {
-        label: "Clothing & Shoes (1kg)",
-        prices: ["£5", "£5", "£5", "£5.50", "£5.50", "£7", "£8", "£8"],
-      },
-      {
-        label: "Luxury Items*",
-        prices: ["£20", "£20", "£20", "£22.50", "£22.50", "£25", "£30", "£30"],
-      },
-      {
-        label: "Gadgets*",
-        prices: ["£15", "£15", "£15", "£15", "£15", "£18", "£18", "£18"],
+        label: "Large Parcels (1kg)",
+        prices: ["£7", "£7", "£7", "£7", "£7.50", "£8", "£8", "£8", "£8", "£8", "£8"],
       },
       {
         label: "Packaged Food (1kg)",
-        prices: ["£5", "£5", "£5", "£5", "£5", "£6.40", "£6.40", "£6.40"],
+        prices: ["£8", "£8", "£8", "£8", "£8", "£9", "£10", "£10", "£10", "£10", "£10"],
       },
       {
-        label: "Perfumes, Toiletries",
-        prices: ["£3", "£3", "£3", "£3.50", "£3", "£5", "£5", "£5"],
+        label: "Perfumes, Toiletries (1kg)",
+        prices: ["£7", "£7", "£7", "£7", "£7.50", "£8", "£8", "£8", "£8", "£8", "£8"],
       },
       {
-        label: "Wigs & Extensions",
-        prices: ["£10", "£10", "£10", "£12", "£12", "£15", "£15", "£15"],
+        label: "Wigs, Extensions, Hair Products (1kg)",
+        prices: ["£10", "£10", "£10", "£10", "£12", "£12", "£15", "£15", "£15", "£18", "£18"],
       },
       {
-        label: "Bicycle, Scooter",
-        prices: ["£20", "£20", "£20", "£22.50", "£22.50", "£25", "£25", "£25"],
+        label: "Gadgets (4kg and less)",
+        prices: ["£15", "£15", "£15", "£15", "£15", "£18", "£18", "£18", "£18", "£18", "£18"],
       },
       {
-        label: "Briefcase",
-        prices: ["£20", "£20", "£20", "£22.50", "£22.50", "£25", "£25", "£25"],
+        label: "Luxury Items (1kg, £299+)",
+        prices: ["£20", "£20", "£20", "£22.50", "£20", "£25", "£30", "£30", "£30", "£30", "£30"],
       },
       {
-        label: "Backpack",
-        prices: ["£30", "£30", "£30", "£32.50", "£32.50", "£35", "£40", "£40"],
+        label: "Backpack (3kg)",
+        prices: ["£100", "£100", "£100", "£120", "£120", "£150", "£150", "£150", "£150", "£180", "£180"],
+      },
+      
+      {
+        label: "Briefcase (5kg)",
+        prices: ["£200", "£200", "£200", "£225", "£225", "£250", "£250", "£250", "£250", "£280", "£280"],
+      },
+      
+      {
+        label: "Duffel Bag (15kg)",
+        prices: ["£400", "£400", "£400", "£400", "£400", "£450", "£450", "£500", "£500", "£500", "£500"],
       },
       {
-        label: "Duffel Bag",
-        prices: ["£40", "£40", "£40", "£50", "£50", "£55", "£55", "£55"],
+        label: "Size 28 Suitcase (23kg)",
+        prices: ["£500", "£500", "£500", "£500", "£500", "£550", "£550", "£600", "£600", "£600", "£600"],
       },
       {
-        label: "Medium GMG*",
-        prices: ["£55", "£55", "£55", "£60", "£60", "£60", "£60", "£60"],
+        label: "Size 32 Suitcase (32kg)",
+        prices: ["£700", "£700", "£700", "£700", "£700", "£750", "£800", "£800", "£800", "£850", "£850"],
       },
       {
-        label: "Large GMG*",
-        prices: ["£75", "£75", "£75", "£80", "£80", "£80", "£80", "£80"],
+        label: "Size 38 Suitcase (45kg)",
+        prices: ["£800", "£800", "£800", "£800", "£800", "£850", "£900", "£900", "£900", "£950", "£950"],
       },
       {
-        label: "Extra Large GMG*",
-        prices: ["£85", "£85", "£85", "£100", "£95", "£95", "£95", "£95"],
+        label: "Checkered Woven 'GMG' Bag (25kg)",
+        prices: ["£520", "£520", "£520", "£520", "£520", "£575", "£575", "£620", "£620", "£620", "£620"],
       },
       {
-        label: "Furniture & Beds",
-        prices: ["£85", "£85", "£85", "£100", "£95", "£95", "£95", "£95"],
+        label: "Checkered Woven 'GMG' Bag (38kg)",
+        prices: ["£750", "£750", "£750", "£750", "£750", "£800", "£850", "£850", "£850", "£900", "£900"],
       },
       {
-        label: "Car Parts",
-        prices: ["£85", "£85", "£85", "£100", "£95", "£95", "£95", "£95"],
+        label: "Checkered Woven 'GMG' Bag (50kg)",
+        prices: ["£850", "£850", "£850", "£850", "£850", "£900", "£950", "£950", "£950", "£1000", "£1000"],
       },
-      {
-        label: "Fridge & Freezers",
-        prices: ["£85", "£85", "£85", "£100", "£95", "£95", "£95", "£95"],
-      },
-      {
-        label: "DD Fridge & Freezers",
-        prices: ["£85", "£85", "£85", "£100", "£95", "£95", "£95", "£95"],
-      },
-      {
-        label: "42 Inch TV",
-        prices: ["£85", "£85", "£85", "£100", "£95", "£95", "£95", "£95"],
-      },
-      {
-        label: "50 Inch TV",
-        prices: ["£85", "£85", "£85", "£100", "£95", "£95", "£95", "£95"],
-      },
-      {
-        label: "75 Inch TV",
-        prices: ["£85", "£85", "£85", "£100", "£95", "£95", "£95", "£95"],
-      },
-      {
-        label: "Size 28 Suitcase",
-        prices: ["£85", "£85", "£85", "£100", "£95", "£95", "£95", "£95"],
-      },
-      {
-        label: "Size 32 Suitcase",
-        prices: ["£85", "£85", "£85", "£100", "£95", "£95", "£95", "£95"],
-      },
-      {
-        label: "Size 38 Suitcase",
-        prices: ["£85", "£85", "£85", "£100", "£95", "£95", "£95", "£95"],
-      },
-      {
-        label: "Drum",
-        prices: ["£85", "£85", "£85", "£100", "£95", "£95", "£95", "£95"],
-      }
 
     ],
   },
 
   toYou: {
     label: "TO YOU",
-    cities: ["Lagos", "Accra", "Abidjan", "Dakar", "Cairo", "Luanda", "Mombasa", "Cape Town", "Lome", "Dar es Salam", "Harare" ],
+    cities: ["Lagos", "Accra", "Abidjan", "Dakar", "Lome", "Cairo", "Luanda", "Mombasa", "Cape Town", "Dar es Salam", "Harare" ],
     rows: [
-      // placeholder values – update when you have them
       {
         label: "Documents & Letters",
-        prices: ["£4", "£4", "£5", "£6", "£6", "£7", "£8"],
+        prices: ["£3", "£3", "£3", "£3", "£3.50", "£4", "£5", "£5", "£5", "£5", "£5"],
       },
       {
         label: "Small Parcels (500g)",
-        prices: ["£6", "£6", "£7", "£8", "£8", "£9", "£10"],
+        prices: ["£5", "£5", "£5", "£5", "£5.50", "£7", "£7", "£7", "£7", "£7", "£7"],
       },
       {
-        label: "Clothing & Shoes (1kg)",
-        prices: ["£10", "£11", "£12", "£13", "£15", "£16", "£17"],
+        label: "Large Parcels (1kg)",
+        prices: ["£7", "£7", "£7", "£7", "£7.50", "£8", "£8", "£8", "£8", "£8", "£8"],
       },
-      // …
+      {
+        label: "Packaged Food (1kg)",
+        prices: ["£8", "£8", "£8", "£8", "£8", "£9", "£10", "£10", "£10", "£10", "£10"],
+      },
+      {
+        label: "Perfumes, Toiletries (1kg)",
+        prices: ["£7", "£7", "£7", "£7", "£7.50", "£8", "£8", "£8", "£8", "£8", "£8"],
+      },
+      {
+        label: "Wigs, Extensions, Hair Products (1kg)",
+        prices: ["£10", "£10", "£10", "£10", "£12", "£12", "£15", "£15", "£15", "£18", "£18"],
+      },
+      {
+        label: "Gadgets (4kg and less)",
+        prices: ["£15", "£15", "£15", "£15", "£15", "£18", "£18", "£18", "£18", "£18", "£18"],
+      },
+      {
+        label: "Luxury Items (1kg, £299+)",
+        prices: ["£20", "£20", "£20", "£22.50", "£20", "£25", "£30", "£30", "£30", "£30", "£30"],
+      },
+      {
+        label: "Backpack (3kg)",
+        prices: ["£100", "£100", "£100", "£120", "£120", "£150", "£150", "£150", "£150", "£180", "£180"],
+      },
+      
+      {
+        label: "Briefcase (5kg)",
+        prices: ["£200", "£200", "£200", "£225", "£225", "£250", "£250", "£250", "£250", "£280", "£280"],
+      },
+      
+      {
+        label: "Duffel Bag (15kg)",
+        prices: ["£400", "£400", "£400", "£400", "£400", "£450", "£450", "£500", "£500", "£500", "£500"],
+      },
+      {
+        label: "Size 28 Suitcase (23kg)",
+        prices: ["£500", "£500", "£500", "£500", "£500", "£550", "£550", "£600", "£600", "£600", "£600"],
+      },
+      {
+        label: "Size 32 Suitcase (32kg)",
+        prices: ["£700", "£700", "£700", "£700", "£700", "£750", "£800", "£800", "£800", "£850", "£850"],
+      },
+      {
+        label: "Size 38 Suitcase (45kg)",
+        prices: ["£800", "£800", "£800", "£800", "£800", "£850", "£900", "£900", "£900", "£950", "£950"],
+      },
+      {
+        label: "Checkered Woven 'GMG' Bag (25kg)",
+        prices: ["£520", "£520", "£520", "£520", "£520", "£575", "£575", "£620", "£620", "£620", "£620"],
+      },
+      {
+        label: "Checkered Woven 'GMG' Bag (38kg)",
+        prices: ["£750", "£750", "£750", "£750", "£750", "£800", "£850", "£850", "£850", "£900", "£900"],
+      },
+      {
+        label: "Checkered Woven 'GMG' Bag (50kg)",
+        prices: ["£850", "£850", "£850", "£850", "£850", "£900", "£950", "£950", "£950", "£1000", "£1000"],
+      },
     ],
   },
 };
+
+const PARCEL_IMAGES: Record<string, string> = {
+  "Documents & Letters": "public/images/parcel-docs.png",
+  "Small Parcels (500g)": "/images/parcel-small.png",
+  "Large Parcels (1kg)": "/images/parcel-large.png",
+  "Packaged Food (1kg)": "/images/parcel-food.png",
+  "Perfumes, Toiletries (1kg)": "/images/parcel-perfume.png",
+  "Wigs, Extensions, Hair Products (1kg)": "/images/parcel-hair.png",
+  "Gadgets (4kg and less)": "/images/parcel-gadgets.png",
+  "Luxury Items (1kg, £299+)": "/images/parcel-luxury.png",
+  "Backpack (3kg)": "/images/parcel-backpack.png",
+  "Briefcase (5kg)": "/images/parcel-briefcase.png",
+  "Duffel Bag (15kg)": "/images/parcel-duffel.png",
+  "Size 28 Suitcase (23kg)": "/images/parcel-28.png",
+  "Size 32 Suitcase (32kg)": "/images/parcel-32.png",
+  "Size 38 Suitcase (45kg)": "/images/parcel-38.png",
+  "Checkered Woven 'GMG' Bag (25kg)": "/images/parcel-gmg-25.png",
+  "Checkered Woven 'GMG' Bag (38kg)": "/images/parcel-gmg-38.png",
+  "Checkered Woven 'GMG' Bag (50kg)": "/images/parcel-gmg-50.png",
+};
+
 
 export default function App() {
   return (
@@ -176,6 +219,7 @@ export default function App() {
       <SectionOne />
       <Marquee />
       <SectionTwo />
+      <Marquee2 />
       <FooterSection />
       <Routes>
         <Route path="/track" element={<Track />} />
@@ -656,8 +700,44 @@ function PricingTable({
             </tr>
           ))}
         </tbody>
+
       </table>
     </div>
+  );
+}
+
+function Marquee2() {
+  const items = [
+    "AFRICA TO THE WORLD... LITERALLY",
+    "*",
+    "info@sprnt.one",
+    "*",
+    "+44 (0) 730 4178 216 –– 24/7 WhatsApp",
+    "*",
+    "+234 (0) 809 9483 973 –– Daytime Tracking",
+    "*",
+    "90642 Inc",
+    "*",
+  ];
+
+  return (
+    <section
+      style={{ backgroundColor: "#B74735" }} // anthracite, forced
+      className="z-20 marquee-strip font-ocr text-sprntText"
+    >
+      <div className="marquee background-sprntAccent border-b border-sprntText py-3">
+        <div className="marquee__inner background-sprntAccent">
+          {items.concat(items).map((item, i) => (
+            <span
+              key={i}
+              className="mx-6 text-[12px] md:text-xs uppercase tracking-tight whitespace-nowrap"
+            >
+              {item}
+            </span>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 
