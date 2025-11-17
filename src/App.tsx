@@ -1332,7 +1332,7 @@ function SiteNav({
     {
       label: "SUPPORT",
       type: "external" as const,
-      href: "mailto:sfyn@sprnt.one?subject=tell%20me%20more%20about%20sprnt.",
+      href: "mailto:sfyn@sprnt.one?subject=tell%20me%20more%20about%20spr.",
     },
     {
       label: "ACCOUNT",
