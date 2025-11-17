@@ -34,155 +34,586 @@ const COMMITMENT_STEPS = [
 const TABLE_DATA = {
   fromYou: {
     label: "FROM YOU",
-    cities: ["Lagos", "Accra", "Abidjan", "Dakar", "Lome", "Cairo", "Luanda", "Mombasa", "Cape Town", "Dar es Salam", "Harare" ],
+    cities: [
+      "Lagos",
+      "Accra",
+      "Abidjan",
+      "Dakar",
+      "Lome",
+      "Cairo",
+      "Luanda",
+      "Mombasa",
+      "Cape Town",
+      "Dar es Salam",
+      "Harare",
+    ],
     rows: [
       {
         label: "Documents & Letters",
-        prices: ["£3", "£3", "£3", "£3", "£3.50", "£4", "£5", "£5", "£5", "£5", "£5"],
+        prices: [
+          "£3",
+          "£3",
+          "£3",
+          "£3",
+          "£3.50",
+          "£4",
+          "£5",
+          "£5",
+          "£5",
+          "£5",
+          "£5",
+        ],
       },
       {
         label: "Small Parcels (500g)",
-        prices: ["£5", "£5", "£5", "£5", "£5.50", "£7", "£7", "£7", "£7", "£7", "£7"],
+        prices: [
+          "£5",
+          "£5",
+          "£5",
+          "£5",
+          "£5.50",
+          "£7",
+          "£7",
+          "£7",
+          "£7",
+          "£7",
+          "£7",
+        ],
       },
       {
         label: "Large Parcels (1kg)",
-        prices: ["£7", "£7", "£7", "£7", "£7.50", "£8", "£8", "£8", "£8", "£8", "£8"],
+        prices: [
+          "£7",
+          "£7",
+          "£7",
+          "£7",
+          "£7.50",
+          "£8",
+          "£8",
+          "£8",
+          "£8",
+          "£8",
+          "£8",
+        ],
       },
       {
         label: "Packaged Food (1kg)",
-        prices: ["£8", "£8", "£8", "£8", "£8", "£9", "£10", "£10", "£10", "£10", "£10"],
+        prices: [
+          "£8",
+          "£8",
+          "£8",
+          "£8",
+          "£8",
+          "£9",
+          "£10",
+          "£10",
+          "£10",
+          "£10",
+          "£10",
+        ],
       },
       {
         label: "Perfumes, Toiletries (1kg)",
-        prices: ["£7", "£7", "£7", "£7", "£7.50", "£8", "£8", "£8", "£8", "£8", "£8"],
+        prices: [
+          "£7",
+          "£7",
+          "£7",
+          "£7",
+          "£7.50",
+          "£8",
+          "£8",
+          "£8",
+          "£8",
+          "£8",
+          "£8",
+        ],
       },
       {
         label: "Wigs, Extensions, Hair Products (1kg)",
-        prices: ["£10", "£10", "£10", "£10", "£12", "£12", "£15", "£15", "£15", "£18", "£18"],
+        prices: [
+          "£10",
+          "£10",
+          "£10",
+          "£10",
+          "£12",
+          "£12",
+          "£15",
+          "£15",
+          "£15",
+          "£18",
+          "£18",
+        ],
       },
       {
         label: "Gadgets (4kg and less)",
-        prices: ["£15", "£15", "£15", "£15", "£15", "£18", "£18", "£18", "£18", "£18", "£18"],
+        prices: [
+          "£15",
+          "£15",
+          "£15",
+          "£15",
+          "£15",
+          "£18",
+          "£18",
+          "£18",
+          "£18",
+          "£18",
+          "£18",
+        ],
       },
       {
         label: "Luxury Items (1kg, £299+)",
-        prices: ["£20", "£20", "£20", "£22.50", "£20", "£25", "£30", "£30", "£30", "£30", "£30"],
+        prices: [
+          "£20",
+          "£20",
+          "£20",
+          "£22.50",
+          "£20",
+          "£25",
+          "£30",
+          "£30",
+          "£30",
+          "£30",
+          "£30",
+        ],
       },
       {
         label: "Backpack (3kg)",
-        prices: ["£100", "£100", "£100", "£120", "£120", "£150", "£150", "£150", "£150", "£180", "£180"],
+        prices: [
+          "£100",
+          "£100",
+          "£100",
+          "£120",
+          "£120",
+          "£150",
+          "£150",
+          "£150",
+          "£150",
+          "£180",
+          "£180",
+        ],
       },
-      
+
       {
         label: "Briefcase (5kg)",
-        prices: ["£200", "£200", "£200", "£225", "£225", "£250", "£250", "£250", "£250", "£280", "£280"],
+        prices: [
+          "£200",
+          "£200",
+          "£200",
+          "£225",
+          "£225",
+          "£250",
+          "£250",
+          "£250",
+          "£250",
+          "£280",
+          "£280",
+        ],
       },
-      
+
       {
         label: "Duffel Bag (15kg)",
-        prices: ["£400", "£400", "£400", "£400", "£400", "£450", "£450", "£500", "£500", "£500", "£500"],
+        prices: [
+          "£400",
+          "£400",
+          "£400",
+          "£400",
+          "£400",
+          "£450",
+          "£450",
+          "£500",
+          "£500",
+          "£500",
+          "£500",
+        ],
       },
       {
         label: "Size 28 Suitcase (23kg)",
-        prices: ["£500", "£500", "£500", "£500", "£500", "£550", "£550", "£600", "£600", "£600", "£600"],
+        prices: [
+          "£500",
+          "£500",
+          "£500",
+          "£500",
+          "£500",
+          "£550",
+          "£550",
+          "£600",
+          "£600",
+          "£600",
+          "£600",
+        ],
       },
       {
         label: "Size 32 Suitcase (32kg)",
-        prices: ["£700", "£700", "£700", "£700", "£700", "£750", "£800", "£800", "£800", "£850", "£850"],
+        prices: [
+          "£700",
+          "£700",
+          "£700",
+          "£700",
+          "£700",
+          "£750",
+          "£800",
+          "£800",
+          "£800",
+          "£850",
+          "£850",
+        ],
       },
       {
         label: "Size 38 Suitcase (45kg)",
-        prices: ["£800", "£800", "£800", "£800", "£800", "£850", "£900", "£900", "£900", "£950", "£950"],
+        prices: [
+          "£800",
+          "£800",
+          "£800",
+          "£800",
+          "£800",
+          "£850",
+          "£900",
+          "£900",
+          "£900",
+          "£950",
+          "£950",
+        ],
       },
       {
         label: "Checkered Woven 'GMG' Bag (25kg)",
-        prices: ["£520", "£520", "£520", "£520", "£520", "£575", "£575", "£620", "£620", "£620", "£620"],
+        prices: [
+          "£520",
+          "£520",
+          "£520",
+          "£520",
+          "£520",
+          "£575",
+          "£575",
+          "£620",
+          "£620",
+          "£620",
+          "£620",
+        ],
       },
       {
         label: "Checkered Woven 'GMG' Bag (38kg)",
-        prices: ["£750", "£750", "£750", "£750", "£750", "£800", "£850", "£850", "£850", "£900", "£900"],
+        prices: [
+          "£750",
+          "£750",
+          "£750",
+          "£750",
+          "£750",
+          "£800",
+          "£850",
+          "£850",
+          "£850",
+          "£900",
+          "£900",
+        ],
       },
       {
         label: "Checkered Woven 'GMG' Bag (50kg)",
-        prices: ["£850", "£850", "£850", "£850", "£850", "£900", "£950", "£950", "£950", "£1000", "£1000"],
+        prices: [
+          "£850",
+          "£850",
+          "£850",
+          "£850",
+          "£850",
+          "£900",
+          "£950",
+          "£950",
+          "£950",
+          "£1000",
+          "£1000",
+        ],
       },
-
     ],
   },
 
   toYou: {
     label: "TO YOU",
-    cities: ["Lagos", "Accra", "Abidjan", "Dakar", "Lome", "Cairo", "Luanda", "Mombasa", "Cape Town", "Dar es Salam", "Harare" ],
+    cities: [
+      "Lagos",
+      "Accra",
+      "Abidjan",
+      "Dakar",
+      "Lome",
+      "Cairo",
+      "Luanda",
+      "Mombasa",
+      "Cape Town",
+      "Dar es Salam",
+      "Harare",
+    ],
     rows: [
       {
         label: "Documents & Letters",
-        prices: ["£3", "£3", "£3", "£3", "£3.50", "£4", "£5", "£5", "£5", "£5", "£5"],
+        prices: [
+          "£3",
+          "£3",
+          "£3",
+          "£3",
+          "£3.50",
+          "£4",
+          "£5",
+          "£5",
+          "£5",
+          "£5",
+          "£5",
+        ],
       },
       {
         label: "Small Parcels (500g)",
-        prices: ["£5", "£5", "£5", "£5", "£5.50", "£7", "£7", "£7", "£7", "£7", "£7"],
+        prices: [
+          "£5",
+          "£5",
+          "£5",
+          "£5",
+          "£5.50",
+          "£7",
+          "£7",
+          "£7",
+          "£7",
+          "£7",
+          "£7",
+        ],
       },
       {
         label: "Large Parcels (1kg)",
-        prices: ["£7", "£7", "£7", "£7", "£7.50", "£8", "£8", "£8", "£8", "£8", "£8"],
+        prices: [
+          "£7",
+          "£7",
+          "£7",
+          "£7",
+          "£7.50",
+          "£8",
+          "£8",
+          "£8",
+          "£8",
+          "£8",
+          "£8",
+        ],
       },
       {
         label: "Packaged Food (1kg)",
-        prices: ["£8", "£8", "£8", "£8", "£8", "£9", "£10", "£10", "£10", "£10", "£10"],
+        prices: [
+          "£8",
+          "£8",
+          "£8",
+          "£8",
+          "£8",
+          "£9",
+          "£10",
+          "£10",
+          "£10",
+          "£10",
+          "£10",
+        ],
       },
       {
         label: "Perfumes, Toiletries (1kg)",
-        prices: ["£7", "£7", "£7", "£7", "£7.50", "£8", "£8", "£8", "£8", "£8", "£8"],
+        prices: [
+          "£7",
+          "£7",
+          "£7",
+          "£7",
+          "£7.50",
+          "£8",
+          "£8",
+          "£8",
+          "£8",
+          "£8",
+          "£8",
+        ],
       },
       {
         label: "Wigs, Extensions, Hair Products (1kg)",
-        prices: ["£10", "£10", "£10", "£10", "£12", "£12", "£15", "£15", "£15", "£18", "£18"],
+        prices: [
+          "£10",
+          "£10",
+          "£10",
+          "£10",
+          "£12",
+          "£12",
+          "£15",
+          "£15",
+          "£15",
+          "£18",
+          "£18",
+        ],
       },
       {
         label: "Gadgets (4kg and less)",
-        prices: ["£15", "£15", "£15", "£15", "£15", "£18", "£18", "£18", "£18", "£18", "£18"],
+        prices: [
+          "£15",
+          "£15",
+          "£15",
+          "£15",
+          "£15",
+          "£18",
+          "£18",
+          "£18",
+          "£18",
+          "£18",
+          "£18",
+        ],
       },
       {
         label: "Luxury Items (1kg, £299+)",
-        prices: ["£20", "£20", "£20", "£22.50", "£20", "£25", "£30", "£30", "£30", "£30", "£30"],
+        prices: [
+          "£20",
+          "£20",
+          "£20",
+          "£22.50",
+          "£20",
+          "£25",
+          "£30",
+          "£30",
+          "£30",
+          "£30",
+          "£30",
+        ],
       },
       {
         label: "Backpack (3kg)",
-        prices: ["£100", "£100", "£100", "£120", "£120", "£150", "£150", "£150", "£150", "£180", "£180"],
+        prices: [
+          "£100",
+          "£100",
+          "£100",
+          "£120",
+          "£120",
+          "£150",
+          "£150",
+          "£150",
+          "£150",
+          "£180",
+          "£180",
+        ],
       },
-      
+
       {
         label: "Briefcase (5kg)",
-        prices: ["£200", "£200", "£200", "£225", "£225", "£250", "£250", "£250", "£250", "£280", "£280"],
+        prices: [
+          "£200",
+          "£200",
+          "£200",
+          "£225",
+          "£225",
+          "£250",
+          "£250",
+          "£250",
+          "£250",
+          "£280",
+          "£280",
+        ],
       },
-      
+
       {
         label: "Duffel Bag (15kg)",
-        prices: ["£400", "£400", "£400", "£400", "£400", "£450", "£450", "£500", "£500", "£500", "£500"],
+        prices: [
+          "£400",
+          "£400",
+          "£400",
+          "£400",
+          "£400",
+          "£450",
+          "£450",
+          "£500",
+          "£500",
+          "£500",
+          "£500",
+        ],
       },
       {
         label: "Size 28 Suitcase (23kg)",
-        prices: ["£500", "£500", "£500", "£500", "£500", "£550", "£550", "£600", "£600", "£600", "£600"],
+        prices: [
+          "£500",
+          "£500",
+          "£500",
+          "£500",
+          "£500",
+          "£550",
+          "£550",
+          "£600",
+          "£600",
+          "£600",
+          "£600",
+        ],
       },
       {
         label: "Size 32 Suitcase (32kg)",
-        prices: ["£700", "£700", "£700", "£700", "£700", "£750", "£800", "£800", "£800", "£850", "£850"],
+        prices: [
+          "£700",
+          "£700",
+          "£700",
+          "£700",
+          "£700",
+          "£750",
+          "£800",
+          "£800",
+          "£800",
+          "£850",
+          "£850",
+        ],
       },
       {
         label: "Size 38 Suitcase (45kg)",
-        prices: ["£800", "£800", "£800", "£800", "£800", "£850", "£900", "£900", "£900", "£950", "£950"],
+        prices: [
+          "£800",
+          "£800",
+          "£800",
+          "£800",
+          "£800",
+          "£850",
+          "£900",
+          "£900",
+          "£900",
+          "£950",
+          "£950",
+        ],
       },
       {
         label: "Checkered Woven 'GMG' Bag (25kg)",
-        prices: ["£520", "£520", "£520", "£520", "£520", "£575", "£575", "£620", "£620", "£620", "£620"],
+        prices: [
+          "£520",
+          "£520",
+          "£520",
+          "£520",
+          "£520",
+          "£575",
+          "£575",
+          "£620",
+          "£620",
+          "£620",
+          "£620",
+        ],
       },
       {
         label: "Checkered Woven 'GMG' Bag (38kg)",
-        prices: ["£750", "£750", "£750", "£750", "£750", "£800", "£850", "£850", "£850", "£900", "£900"],
+        prices: [
+          "£750",
+          "£750",
+          "£750",
+          "£750",
+          "£750",
+          "£800",
+          "£850",
+          "£850",
+          "£850",
+          "£900",
+          "£900",
+        ],
       },
       {
         label: "Checkered Woven 'GMG' Bag (50kg)",
-        prices: ["£850", "£850", "£850", "£850", "£850", "£900", "£950", "£950", "£950", "£1000", "£1000"],
+        prices: [
+          "£850",
+          "£850",
+          "£850",
+          "£850",
+          "£850",
+          "£900",
+          "£950",
+          "£950",
+          "£950",
+          "£1000",
+          "£1000",
+        ],
       },
     ],
   },
@@ -206,13 +637,9 @@ const QUOTE_PRICE_MAP: Record<string, number> = {
   "Size 38 Suitcase (45kg)": 800,
   "Checkered Woven 'GMG' Bag (25kg)": 520,
   "Checkered Woven GMG Bag (38kg)": 750,
-  'Checkered Woven GMG Bag (50kg)': 850,
+  "Checkered Woven GMG Bag (50kg)": 850,
   Other: 20,
 };
-
-
-
-
 
 export default function App() {
   const [isQuoteOpen, setIsQuoteOpen] = React.useState(false);
@@ -232,11 +659,7 @@ export default function App() {
         <Route path="/ship" element={<Ship />} />
         <Route path="/login" element={<Login />} />
       </Routes>
-
-      {isQuoteOpen && (
-        <QuoteModal onClose={() => setIsQuoteOpen(false)} />
-      )}
-
+      {isQuoteOpen && <QuoteModal onClose={() => setIsQuoteOpen(false)} />}
     </div>
   );
 }
@@ -266,9 +689,6 @@ function QuoteModal({ onClose }: { onClose: () => void }) {
     const weight = weightRaw ? Number(weightRaw) : 0;
 
     const name = ((data.get("name") as string) || "").trim();
-    const email = ((data.get("email") as string) || "").trim();
-    const whatsapp = ((data.get("whatsapp") as string) || "").trim();
-    const notes = ((data.get("notes") as string) || "").trim();
 
     const base = QUOTE_PRICE_MAP[parcelType] ?? QUOTE_PRICE_MAP["Other"];
     const price = base; // you can layer weight-based logic later
@@ -289,49 +709,47 @@ function QuoteModal({ onClose }: { onClose: () => void }) {
 
   // build mailto and WhatsApp links when quote is available
   // replace with your real WhatsApp number in international format
-const SPRNT_WHATSAPP_NUMBER = "447304178216";
+  const SPRNT_WHATSAPP_NUMBER = "447304178216";
 
-const whatsappShipNowHref =
-  quote &&
-  (() => {
-    const textLines = [
-      `Hi Sprnt – I'd like to ship a parcel asap.`,
-      ``,
-      `Name: ${quote.name || "-"}`,
-      `Route: ${quote.from || "?"} → ${quote.to || "?"}`,
-      `Parcel: ${quote.parcelType} (~${quote.weight || "?"}kg)`,
-      ``,
-      `Indicative price you showed me: ${quote.currency}${quote.price.toFixed(
-        2
-      )}.`,
-      ``,
-      `Please confirm, send payment details and drop-off instructions.`,
-    ];
-    const text = encodeURIComponent(textLines.join("\n"));
-    return `https://wa.me/${SPRNT_WHATSAPP_NUMBER}?text=${text}`;
-  })();
+  const whatsappShipNowHref =
+    quote &&
+    (() => {
+      const textLines = [
+        `Hi Sprnt – I'd like to ship a parcel asap.`,
+        ``,
+        `Name: ${quote.name || "-"}`,
+        `Route: ${quote.from || "?"} → ${quote.to || "?"}`,
+        `Parcel: ${quote.parcelType} (~${quote.weight || "?"}kg)`,
+        ``,
+        `Indicative price you showed me: ${quote.currency}${quote.price.toFixed(
+          2
+        )}.`,
+        ``,
+        `Please confirm, send payment details and drop-off instructions.`,
+      ];
+      const text = encodeURIComponent(textLines.join("\n"));
+      return `https://wa.me/${SPRNT_WHATSAPP_NUMBER}?text=${text}`;
+    })();
 
-const whatsappScheduleHref =
-  quote &&
-  (() => {
-    const textLines = [
-      `Hi Sprnt – I'd like to schedule a shipment for next week.`,
-      ``,
-      `Name: ${quote.name || "-"}`,
-      `Route: ${quote.from || "?"} → ${quote.to || "?"}`,
-      `Parcel: ${quote.parcelType} (~${quote.weight || "?"}kg)`,
-      ``,
-      `Indicative price you showed me: ${quote.currency}${quote.price.toFixed(
-        2
-      )}.`,
-      ``,
-      `Please confirm availability next week and share next steps.`,
-    ];
-    const text = encodeURIComponent(textLines.join("\n"));
-    return `https://wa.me/${SPRNT_WHATSAPP_NUMBER}?text=${text}`;
-  })();
-
-
+  const whatsappScheduleHref =
+    quote &&
+    (() => {
+      const textLines = [
+        `Hi Sprnt – I'd like to schedule a shipment for next week.`,
+        ``,
+        `Name: ${quote.name || "-"}`,
+        `Route: ${quote.from || "?"} → ${quote.to || "?"}`,
+        `Parcel: ${quote.parcelType} (~${quote.weight || "?"}kg)`,
+        ``,
+        `Indicative price you showed me: ${quote.currency}${quote.price.toFixed(
+          2
+        )}.`,
+        ``,
+        `Please confirm availability next week and share next steps.`,
+      ];
+      const text = encodeURIComponent(textLines.join("\n"));
+      return `https://wa.me/${SPRNT_WHATSAPP_NUMBER}?text=${text}`;
+    })();
 
   return (
     <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/70 backdrop-blur">
@@ -344,7 +762,6 @@ const whatsappScheduleHref =
         >
           X
         </button>
-        
 
         {/* HEADER */}
         <div className="space-y-2 pr-10">
@@ -353,180 +770,181 @@ const whatsappScheduleHref =
           </h2>
           <p className="text-[12px] md:text-[16px] text-sprntText tracking-tight leading-tight">
             Rates shared are{" "}
-                <span className="text-sprntAccent">indicative only</span> and may
-                change based on final weight, dimensions, route and customs.
+            <span className="text-sprntAccent">indicative only</span> and may
+            change based on final weight, dimensions, route and customs.
           </p>
         </div>
 
         {/* FORM */}
         {!quote && (
-        <form onSubmit={handleSubmit} className="mt-6 space-y-8">
-          {/* ROUTE */}
-          <section className="space-y-3">
-            <h3 className="text-[16px] uppercase text-sprntText font-pp tracking-tight">
-              ROUTE
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              <div className="flex flex-col gap-1">
-                <label className="text-[11px] uppercase tracking-[0.16em] text-sprntText font-pp tracking-tight">
-                  From
-                </label>
-                <input
-                  required
-                  name="from"
-                  placeholder="City, Country"
-                  className="w-full bg-[#151515] border border-sprntBorder px-3 py-2 text-[12px] md:text-sm focus:outline-none focus:border-sprntAccent font-ocr tracking-tight"
-                />
+          <form onSubmit={handleSubmit} className="mt-6 space-y-8">
+            {/* ROUTE */}
+            <section className="space-y-3">
+              <h3 className="text-[16px] uppercase text-sprntText font-pp tracking-tight">
+                ROUTE
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div className="flex flex-col gap-1">
+                  <label className="text-[11px] uppercase tracking-[0.16em] text-sprntText font-pp tracking-tight">
+                    From
+                  </label>
+                  <input
+                    required
+                    name="from"
+                    placeholder="City, Country"
+                    className="w-full bg-[#151515] border border-sprntBorder px-3 py-2 text-[12px] md:text-sm focus:outline-none focus:border-sprntAccent font-ocr tracking-tight"
+                  />
+                </div>
+                <div className="flex flex-col gap-1">
+                  <label className="text-[11px] uppercase tracking-[0.16em] text-sprntText font-pp tracking-tight">
+                    To
+                  </label>
+                  <input
+                    required
+                    name="to"
+                    placeholder="City, Country"
+                    className="w-full bg-[#151515] border border-sprntBorder px-3 py-2 text-[12px] md:text-sm focus:outline-none focus:border-sprntAccent font-ocr tracking-tight"
+                  />
+                </div>
               </div>
-              <div className="flex flex-col gap-1">
-                <label className="text-[11px] uppercase tracking-[0.16em] text-sprntText font-pp tracking-tight">
-                  To
-                </label>
-                <input
-                  required
-                  name="to"
-                  placeholder="City, Country"
-                  className="w-full bg-[#151515] border border-sprntBorder px-3 py-2 text-[12px] md:text-sm focus:outline-none focus:border-sprntAccent font-ocr tracking-tight"
-                />
-              </div>
-            </div>
-          </section>
+            </section>
 
-          {/* PARCEL */}
-          <section className="space-y-3">
-            <h3 className="text-[16px] uppercase text-sprntText font-pp tracking-tight">
-              PARCEL
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              <div className="flex flex-col gap-1">
-                <label className="text-[11px] uppercase tracking-[0.16em] text-sprntText font-pp tracking-tight">
-                  Parcel type
-                </label>
-                <select
-                  required
-                  name="parcelType"
-                  className="w-full bg-[#151515] border border-sprntBorder px-3 py-2 text-[12px] md:text-sm focus:outline-none focus:border-sprntAccent font-ocr tracking-tight"
-                >
-                  <option value="">Select a parcel type</option>
-                  <option>Documents &amp; Letters</option>
-                  <option>Small Parcels (500g)</option>
-                  <option>Clothing &amp; Shoes (1kg)</option>
-                  <option>Packaged Food (1kg)</option>
-                  <option>Perfumes, Toiletries (1kg)</option>
-                  <option>Wigs, Extensions, Hair Products (1kg)</option>
-                  <option>Gadgets (4kg and less)</option>
-                  <option>Luxury Items (1kg, £299+)</option>
-                  <option>Backpack (3kg)</option>
-                  <option>Briefcase (5kg)</option>
-                  <option>Duffel Bag (15kg)</option>
-                  <option>Size 28 Suitcase (23kg)</option>
-                  <option>Size 32 Suitcase (32kg)</option>
-                  <option>Size 38 Suitcase (45kg)</option>
-                  <option>Checkered Woven 'GMG' Bag (25kg)</option>
-                  <option>Checkered Woven GMG Bag (38kg)</option>
-                  <option>Checkered Woven GMG Bag (50kg)</option>
-                  <option>Other</option>
-                </select>
+            {/* PARCEL */}
+            <section className="space-y-3">
+              <h3 className="text-[16px] uppercase text-sprntText font-pp tracking-tight">
+                PARCEL
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div className="flex flex-col gap-1">
+                  <label className="text-[11px] uppercase tracking-[0.16em] text-sprntText font-pp tracking-tight">
+                    Parcel type
+                  </label>
+                  <select
+                    required
+                    name="parcelType"
+                    className="w-full bg-[#151515] border border-sprntBorder px-3 py-2 text-[12px] md:text-sm focus:outline-none focus:border-sprntAccent font-ocr tracking-tight"
+                  >
+                    <option value="">Select a parcel type</option>
+                    <option>Documents &amp; Letters</option>
+                    <option>Small Parcels (500g)</option>
+                    <option>Clothing &amp; Shoes (1kg)</option>
+                    <option>Packaged Food (1kg)</option>
+                    <option>Perfumes, Toiletries (1kg)</option>
+                    <option>Wigs, Extensions, Hair Products (1kg)</option>
+                    <option>Gadgets (4kg and less)</option>
+                    <option>Luxury Items (1kg, £299+)</option>
+                    <option>Backpack (3kg)</option>
+                    <option>Briefcase (5kg)</option>
+                    <option>Duffel Bag (15kg)</option>
+                    <option>Size 28 Suitcase (23kg)</option>
+                    <option>Size 32 Suitcase (32kg)</option>
+                    <option>Size 38 Suitcase (45kg)</option>
+                    <option>Checkered Woven 'GMG' Bag (25kg)</option>
+                    <option>Checkered Woven GMG Bag (38kg)</option>
+                    <option>Checkered Woven GMG Bag (50kg)</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+
+                <div className="flex flex-col gap-1">
+                  <label className="text-[11px] uppercase tracking-[0.16em] text-sprntText font-pp tracking-tight">
+                    Approx. weight (kg)
+                  </label>
+                  <input
+                    required
+                    type="number"
+                    step="0.1"
+                    min="0"
+                    name="weight"
+                    placeholder="e.g. 15"
+                    className="w-full bg-[#151515] border border-sprntBorder px-3 py-2 text-[12px] md:text-sm focus:outline-none focus:border-sprntAccent font-ocr tracking-tight"
+                  />
+                </div>
               </div>
 
               <div className="flex flex-col gap-1">
-                <label className="text-[11px] uppercase tracking-[0.16em] text-sprntText font-pp tracking-tight">
-                  Approx. weight (kg)
+                <label className="text-[16px] uppercase text-sprntText font-pp tracking-tight">
+                  Notes (optional)
                 </label>
-                <input
-                  required
-                  type="number"
-                  step="0.1"
-                  min="0"
-                  name="weight"
-                  placeholder="e.g. 15"
+                <textarea
+                  name="notes"
+                  rows={3}
+                  placeholder="Fragile? Time-sensitive? Anything unusual?"
                   className="w-full bg-[#151515] border border-sprntBorder px-3 py-2 text-[12px] md:text-sm focus:outline-none focus:border-sprntAccent font-ocr tracking-tight"
                 />
               </div>
-            </div>
+            </section>
 
-            <div className="flex flex-col gap-1">
-              <label className="text-[16px] uppercase text-sprntText font-pp tracking-tight">
-                Notes (optional)
-              </label>
-              <textarea
-                name="notes"
-                rows={3}
-                placeholder="Fragile? Time-sensitive? Anything unusual?"
-                className="w-full bg-[#151515] border border-sprntBorder px-3 py-2 text-[12px] md:text-sm focus:outline-none focus:border-sprntAccent font-ocr tracking-tight"
-              />
-            </div>
-          </section>
+            {/* CONTACT */}
+            <section className="space-y-3">
+              <h3 className="text-[16px] uppercase text-sprntText font-pp tracking-tight">
+                CONTACT
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div className="flex flex-col gap-1">
+                  <label className="text-[11px] uppercase tracking-[0.16em] text-sprntText font-pp tracking-tight">
+                    Name
+                  </label>
+                  <input
+                    required
+                    name="name"
+                    placeholder="Your full name"
+                    className="w-full bg-[#151515] border border-sprntBorder px-3 py-2 text-[12px] md:text-sm focus:outline-none focus:border-sprntAccent font-ocr tracking-tight"
+                  />
+                </div>
+                <div className="flex flex-col gap-1">
+                  <label className="text-[11px] uppercase tracking-[0.16em] text-sprntText font-pp tracking-tight">
+                    Email
+                  </label>
+                  <input
+                    required
+                    type="email"
+                    name="email"
+                    placeholder="you@example.com"
+                    className="w-full bg-[#151515] border border-sprntBorder px-3 py-2 text-[12px] md:text-sm focus:outline-none focus:border-sprntAccent font-ocr tracking-tight"
+                  />
+                </div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div className="flex flex-col gap-1">
+                  <label className="text-[11px] uppercase tracking-[0.16em] text-sprntText font-pp tracking-tight">
+                    WhatsApp
+                  </label>
+                  <input
+                    required
+                    name="whatsapp"
+                    placeholder="+44… or +234…"
+                    className="w-full bg-[#151515] border border-sprntBorder px-3 py-2 text-[12px] md:text-sm focus:outline-none focus:border-sprntAccent font-ocr tracking-tight"
+                  />
+                </div>
+                <div className="flex flex-col gap-1">
+                  <label className="text-[11px] uppercase tracking-[0.16em] text-sprntText font-pp tracking-tight">
+                    Preferred contact
+                  </label>
+                  <select
+                    name="contactPreference"
+                    className="w-full bg-[#151515] border border-sprntBorder px-3 py-2 text-[12px] md:text-sm focus:outline-none focus:border-sprntAccent font-ocr tracking-tight"
+                  >
+                    <option>Email</option>
+                    <option>WhatsApp</option>
+                    <option>Either</option>
+                  </select>
+                </div>
+              </div>
+            </section>
 
-          {/* CONTACT */}
-          <section className="space-y-3">
-            <h3 className="text-[16px] uppercase text-sprntText font-pp tracking-tight">
-              CONTACT
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              <div className="flex flex-col gap-1">
-                <label className="text-[11px] uppercase tracking-[0.16em] text-sprntText font-pp tracking-tight">
-                  Name
-                </label>
-                <input
-                  required
-                  name="name"
-                  placeholder="Your full name"
-                  className="w-full bg-[#151515] border border-sprntBorder px-3 py-2 text-[12px] md:text-sm focus:outline-none focus:border-sprntAccent font-ocr tracking-tight"
-                />
-              </div>
-              <div className="flex flex-col gap-1">
-                <label className="text-[11px] uppercase tracking-[0.16em] text-sprntText font-pp tracking-tight">
-                  Email
-                </label>
-                <input
-                  required
-                  type="email"
-                  name="email"
-                  placeholder="you@example.com"
-                  className="w-full bg-[#151515] border border-sprntBorder px-3 py-2 text-[12px] md:text-sm focus:outline-none focus:border-sprntAccent font-ocr tracking-tight"
-                />
-              </div>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              <div className="flex flex-col gap-1">
-                <label className="text-[11px] uppercase tracking-[0.16em] text-sprntText font-pp tracking-tight">
-                  WhatsApp
-                </label>
-                <input
-                  required
-                  name="whatsapp"
-                  placeholder="+44… or +234…"
-                  className="w-full bg-[#151515] border border-sprntBorder px-3 py-2 text-[12px] md:text-sm focus:outline-none focus:border-sprntAccent font-ocr tracking-tight"
-                />
-              </div>
-              <div className="flex flex-col gap-1">
-                <label className="text-[11px] uppercase tracking-[0.16em] text-sprntText font-pp tracking-tight">
-                  Preferred contact
-                </label>
-                <select
-                  name="contactPreference"
-                  className="w-full bg-[#151515] border border-sprntBorder px-3 py-2 text-[12px] md:text-sm focus:outline-none focus:border-sprntAccent font-ocr tracking-tight"
-                >
-                  <option>Email</option>
-                  <option>WhatsApp</option>
-                  <option>Either</option>
-                </select>
-              </div>
-            </div>
-          </section>
-
-          {/* FOOTER + QUOTE DISPLAY */}
-          <div className="flex flex-col gap-3 pt-4 border-t border-sprntBorder">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
-              <p className="text-[11px] text-sprntText max-w-md pr-8">
-                Rates shared are{" "}
-                <span className="text-sprntAccent">indicative only</span> and may
-                change based on final weight, dimensions, route and customs.
-              </p>
-              <button
-                type="submit"
-                className="
+            {/* FOOTER + QUOTE DISPLAY */}
+            <div className="flex flex-col gap-3 pt-4 border-t border-sprntBorder">
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+                <p className="text-[11px] text-sprntText max-w-md pr-8">
+                  Rates shared are{" "}
+                  <span className="text-sprntAccent">indicative only</span> and
+                  may change based on final weight, dimensions, route and
+                  customs.
+                </p>
+                <button
+                  type="submit"
+                  className="
                   inline-flex items-center justify-center
                   px-5 py-2.5
                   text-[12px] md:text-[10px]
@@ -540,43 +958,41 @@ const whatsappScheduleHref =
                   hover:text-sprntBg
                   hover:border-sprntAccent
                 "
-              >
-                Request quote
-              </button>
+                >
+                  Request quote
+                </button>
+              </div>
+
+              {submitted && !quote && (
+                <p className="text-[11px] text-sprntAccent mt-2">
+                  Something went wrong calculating your quote. Please try again.
+                </p>
+              )}
             </div>
-
-            
-
-            {submitted && !quote && (
-              <p className="text-[11px] text-sprntAccent mt-2">
-                Something went wrong calculating your quote. Please try again.
-              </p>
-            )}
-          </div>
-        </form>
+          </form>
         )}
 
         {quote && (
-              <div className="mt-3 space-y-2 border border-sprntBorder bg-[#151515] px-4 py-3">
-                <p className="text-[24px] font-pp">
-                  Estimated price:{" "}
-                  <span className="font-semibold">
-                    {quote.currency}
-                    {quote.price.toFixed(2)}
-                  </span>
-                </p>
-                <p className="text-[11px] text-sprntText">
-                  {quote.parcelType} (~{quote.weight || "?"}kg) |{" "}
-                  {quote.from || "?"} → {quote.to || "?"}
-                </p>
+          <div className="mt-3 space-y-2 border border-sprntBorder bg-[#151515] px-4 py-3">
+            <p className="text-[24px] font-pp">
+              Estimated price:{" "}
+              <span className="font-semibold">
+                {quote.currency}
+                {quote.price.toFixed(2)}
+              </span>
+            </p>
+            <p className="text-[11px] text-sprntText">
+              {quote.parcelType} (~{quote.weight || "?"}kg) |{" "}
+              {quote.from || "?"} → {quote.to || "?"}
+            </p>
 
-                <div className="flex flex-wrap gap-2 pt-2">
-                  {whatsappShipNowHref && (
-                    <a
-                      href={whatsappShipNowHref}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="
+            <div className="flex flex-wrap gap-2 pt-2">
+              {whatsappShipNowHref && (
+                <a
+                  href={whatsappShipNowHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="
                         inline-flex items-center justify-center
                         px-3 py-1.5 font-ocr
                         text-[10px] uppercase tracking-[0.18em]
@@ -585,14 +1001,14 @@ const whatsappScheduleHref =
                         hover:bg-sprntAccent hover:text-sprntBg
                         transition-colors
                       "
-                    >
-                      Ship Now
-                    </a>
-                  )}
-                  {whatsappScheduleHref && (
-                    <a
-                      href={whatsappScheduleHref}
-                      className="
+                >
+                  Ship Now
+                </a>
+              )}
+              {whatsappScheduleHref && (
+                <a
+                  href={whatsappScheduleHref}
+                  className="
                         inline-flex items-center justify-center
                         px-3 py-1.5 font-ocr
                         text-[10px] uppercase tracking-[0.18em]
@@ -601,21 +1017,17 @@ const whatsappScheduleHref =
                         hover:border-sprntAccent hover:text-sprntAccent
                         transition-colors
                       "
-                    >
-                      Schedule shipping
-                    </a>
-                  )}
-                </div>
-              </div>
-            )}
+                >
+                  Schedule shipping
+                </a>
+              )}
+            </div>
+          </div>
+        )}
       </div>
-      
     </div>
-    
   );
 }
-
-
 
 function SiteNav({ onOpenQuote }: { onOpenQuote: () => void }) {
   const navItems = [
@@ -674,14 +1086,11 @@ function SiteNav({ onOpenQuote }: { onOpenQuote: () => void }) {
               return (
                 <Link
                   key={item.label}
-                  
-
-                    to="#"
-  onClick={(e) => {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }}
-
+                  to="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }}
                   className="
            hidden                 /* hide on mobile */
     md:inline-flex         /* show on desktop */
@@ -700,20 +1109,16 @@ function SiteNav({ onOpenQuote }: { onOpenQuote: () => void }) {
                 >
                   {item.label}
                 </Link>
-                
-
-
-
               );
             }
 
             if (item.type === "quote") {
-    return (
-      <button
-        key={item.label}
-        type="button"
-        onClick={onOpenQuote}
-        className="
+              return (
+                <button
+                  key={item.label}
+                  type="button"
+                  onClick={onOpenQuote}
+                  className="
           inline-flex items-center
           bg-[#151515]
           backdrop-blur-md
@@ -730,11 +1135,11 @@ function SiteNav({ onOpenQuote }: { onOpenQuote: () => void }) {
           hover:text-sprntAccent
           hover:border-sprntAccent
         "
-      >
-        {item.label}
-      </button>
-    );
-  }
+                >
+                  {item.label}
+                </button>
+              );
+            }
 
             return (
               <a
@@ -997,30 +1402,26 @@ function SectionTwo() {
         </h2>
 
         <div className="w-full mb-2">
-
-  <div className="flex pb-2 w-full border-[#151515]">
-    
-    {/* FROM YOU */}
-    <button
-      onClick={() => handleSwitch("fromYou")}
-      className={`
+          <div className="flex pb-2 w-full border-[#151515]">
+            {/* FROM YOU */}
+            <button
+              onClick={() => handleSwitch("fromYou")}
+              className={`
         cursor-pointer w-1/2 flex justify-center pb-4 pt-4 transition-all hover:text-sprntAccent border-r-1
         ${
           view === "fromYou"
             ? "border-[#151515] text-[#151515] font-semibold"
-            : "border-transparent text-[#C6C6C8]" 
+            : "border-transparent text-[#C6C6C8]"
         }
       `}
-    >
-      FROM LONDON, TO
-    </button>
+            >
+              FROM LONDON, TO
+            </button>
 
-    
-
-    {/* TO YOU */}
-    <button
-      onClick={() => handleSwitch("toYou")}
-      className={`
+            {/* TO YOU */}
+            <button
+              onClick={() => handleSwitch("toYou")}
+              className={`
         cursor-pointer w-1/2 flex justify-center pb-4 pt-4 transition-all hover:text-sprntAccent border-l-1
         ${
           view === "toYou"
@@ -1028,27 +1429,24 @@ function SectionTwo() {
             : "border-transparent text-[#C6C6C8]"
         }
       `}
-    >
-      TO LONDON, FROM
-    </button>
-
-  </div>
-</div>
+            >
+              TO LONDON, FROM
+            </button>
+          </div>
+        </div>
 
         {/* SCROLLABLE TABLE AREA INSIDE THE 100VH SECTION */}
         <div className="flex-1 overflow-y-auto p-0 m-0 bg-[#E2E1DF]">
-  <PricingTable
-    data={data}
-    activeCol={activeCol}
-    onColumnChange={(idx) => setActiveCol(idx)}
-  />
-</div>
-
+          <PricingTable
+            data={data}
+            activeCol={activeCol}
+            onColumnChange={(idx) => setActiveCol(idx)}
+          />
+        </div>
       </div>
     </section>
   );
 }
-
 
 function PricingTable({
   data,
@@ -1114,7 +1512,6 @@ function PricingTable({
             </tr>
           ))}
         </tbody>
-
       </table>
     </div>
   );
@@ -1182,17 +1579,16 @@ function FooterSection() {
     text-sprntText
     tracking-tight"
         >
-          Might as well {" "}
+          Might as well{" "}
           <a
-  href="https://wa.me/447304178216?text=Hi%20Sprnt%2C%20I%20want%20to%20ship%20a%20parcel."
-  target="_blank"
-  rel="noopener noreferrer"
-  className="text-sprntAccent"
->
-  ship something
-</a>{" "}
-          if you’ve scrolled this far. That said, we’ve got other cool
-          products.
+            href="https://wa.me/447304178216?text=Hi%20Sprnt%2C%20I%20want%20to%20ship%20a%20parcel."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sprntAccent"
+          >
+            ship something
+          </a>{" "}
+          if you’ve scrolled this far. That said, we’ve got other cool products.
         </p>
 
         {/* TOP STRIP: /25 / NVG8 / KANO */}
@@ -1238,7 +1634,7 @@ function FooterSection() {
             </a>
           </div>
 
-<div className="flex flex-col gap-4 lg:pl-6 pt-4 md:pt-2 lg:pt-0 border-sprntText lg:border-b-0">
+          <div className="flex flex-col gap-4 lg:pl-6 pt-4 md:pt-2 lg:pt-0 border-sprntText lg:border-b-0">
             <img src="/KANO.svg" alt=" " className="w-full object-cover mt-4" />
             <a
               href="https://kano.sprnt.one"
