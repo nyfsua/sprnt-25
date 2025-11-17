@@ -189,25 +189,7 @@ const TABLE_DATA = {
   },
 };
 
-const PARCEL_IMAGES: Record<string, string> = {
-  "Documents & Letters": "public/images/parcel-docs.png",
-  "Small Parcels (500g)": "/images/parcel-small.png",
-  "Large Parcels (1kg)": "/images/parcel-large.png",
-  "Packaged Food (1kg)": "/images/parcel-food.png",
-  "Perfumes, Toiletries (1kg)": "/images/parcel-perfume.png",
-  "Wigs, Extensions, Hair Products (1kg)": "/images/parcel-hair.png",
-  "Gadgets (4kg and less)": "/images/parcel-gadgets.png",
-  "Luxury Items (1kg, £299+)": "/images/parcel-luxury.png",
-  "Backpack (3kg)": "/images/parcel-backpack.png",
-  "Briefcase (5kg)": "/images/parcel-briefcase.png",
-  "Duffel Bag (15kg)": "/images/parcel-duffel.png",
-  "Size 28 Suitcase (23kg)": "/images/parcel-28.png",
-  "Size 32 Suitcase (32kg)": "/images/parcel-32.png",
-  "Size 38 Suitcase (45kg)": "/images/parcel-38.png",
-  "Checkered Woven 'GMG' Bag (25kg)": "/images/parcel-gmg-25.png",
-  "Checkered Woven 'GMG' Bag (38kg)": "/images/parcel-gmg-38.png",
-  "Checkered Woven 'GMG' Bag (50kg)": "/images/parcel-gmg-50.png",
-};
+
 
 
 export default function App() {
