@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* ----------------------------------------------
-   FONT FACES
+  fonts
    ---------------------------------------------- */
 
 @font-face {
@@ -21,25 +21,25 @@
 }
 
 /* ----------------------------------------------
-   THEME TOKENS (TAILWIND v4)
+   tailwind 4 tokens
    ---------------------------------------------- */
 
 @theme {
   --font-pp: "PPNeueMontreal", sans-serif;
   --font-ocr: "OCR-ABT", monospace;
 
-  /* core palette */
+  /* palette */
   --color-sprntBg: #0A0A0C;      /* background */
   --color-sprntText: #C6C6C8;    /* primary text */
-  --color-sprntMuted: #303032;   /* secondary text / muted */
+  --color-sprntMuted: #303032;   /* secondary text */
   --color-sprntAccent: #B74735;  /* burnt orange accent */
-  --color-sprntBorder: #303032;  /* strokes / outlines */
+  --color-sprntBorder: #303032;  /* strokes  */
   --color-siliconOrange: #C85F40;
   --color-anthracite: #151515;
 }
 
 /* ----------------------------------------------
-   GLOBAL BASE
+   global
    ---------------------------------------------- */
 
 @layer base {
