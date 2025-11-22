@@ -15,7 +15,7 @@ export default function Quote() {
   return (
     <main className="min-h-screen bg-sprntBg text-sprntText pt-[calc(48px+32px)] px-[20px] md:px-[40px] pb-16">
       <div className="max-w-4xl mx-auto space-y-10">
-        {/* HEADER */}
+        
         <header className="space-y-2">
           <p className="text-[11px] tracking-[0.24em] uppercase text-sprntMuted font-ocr">
             BOOKING
@@ -29,12 +29,12 @@ export default function Quote() {
           </p>
         </header>
 
-        {/* FORM */}
+       
         <form
           onSubmit={handleSubmit}
           className="space-y-10 border border-sprntBorder bg-[#111111]/80 backdrop-blur-md p-5 md:p-8"
         >
-          {/* ROUTE */}
+          
           <section className="space-y-4">
             <h2 className="text-[13px] tracking-[0.18em] uppercase text-sprntMuted font-ocr">
               ROUTE
@@ -65,7 +65,7 @@ export default function Quote() {
             </div>
           </section>
 
-          {/* PARCEL DETAILS */}
+         
           <section className="space-y-4">
             <h2 className="text-[13px] tracking-[0.18em] uppercase text-sprntMuted font-ocr">
               PARCEL DETAILS
@@ -167,7 +167,7 @@ export default function Quote() {
             </div>
           </section>
 
-          {/* CONTACT DETAILS */}
+         
           <section className="space-y-4">
             <h2 className="text-[13px] tracking-[0.18em] uppercase text-sprntMuted font-ocr">
               CONTACT
@@ -229,7 +229,7 @@ export default function Quote() {
             </div>
           </section>
 
-          {/* FOOTER / SUBMIT */}
+         
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 pt-4 border-t border-sprntBorder">
             <div className="text-[11px] md:text-[12px] text-sprntMuted max-w-md">
               Rates provided here are{" "}
