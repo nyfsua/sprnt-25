@@ -618,7 +618,6 @@ const TABLE_DATA = {
   },
 };
 
-// Very simple example – change numbers to match your table.
 const QUOTE_PRICE_MAP: Record<string, number> = {
   "Documents & Letters": 3,
   "Small Parcels (500g)": 5,
@@ -693,7 +692,7 @@ function QuoteModal({ onClose }: { onClose: () => void }) {
     const name = ((data.get("name") as string) || "").trim();
 
     const base = QUOTE_PRICE_MAP[parcelType] ?? QUOTE_PRICE_MAP["Other"];
-    const price = base; // you can layer weight-based logic later
+    const price = base; 
     const currency = "£";
 
     setQuote({
@@ -709,8 +708,7 @@ function QuoteModal({ onClose }: { onClose: () => void }) {
     setSubmitted(true);
   };
 
-  // build mailto and WhatsApp links when quote is available
-  // replace with your real WhatsApp number in international format
+
   const SPRNT_WHATSAPP_NUMBER = "447304178216";
 
   const whatsappShipNowHref =
@@ -756,7 +754,7 @@ function QuoteModal({ onClose }: { onClose: () => void }) {
   return (
     <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/70 backdrop-blur">
       <div className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-[#111111] border border-sprntBorder px-5 py-6 md:px-8 md:py-8">
-        {/* CLOSE */}
+       
         <button
           type="button"
           onClick={onClose}
@@ -765,7 +763,7 @@ function QuoteModal({ onClose }: { onClose: () => void }) {
           X
         </button>
 
-        {/* HEADER */}
+      
         <div className="space-y-2 pr-10">
           <h2 className="text-[24px] md:text-[32px] leading-tight font-pp">
             Estimated cost of your next shipment.
@@ -777,10 +775,10 @@ function QuoteModal({ onClose }: { onClose: () => void }) {
           </p>
         </div>
 
-        {/* FORM */}
+        
         {!quote && (
           <form onSubmit={handleSubmit} className="mt-6 space-y-8">
-            {/* ROUTE */}
+            
             <section className="space-y-3">
               <h3 className="text-[16px] uppercase text-sprntText font-pp tracking-tight">
                 ROUTE
@@ -811,7 +809,7 @@ function QuoteModal({ onClose }: { onClose: () => void }) {
               </div>
             </section>
 
-            {/* PARCEL */}
+            
             <section className="space-y-3">
               <h3 className="text-[16px] uppercase text-sprntText font-pp tracking-tight">
                 PARCEL
@@ -877,7 +875,7 @@ function QuoteModal({ onClose }: { onClose: () => void }) {
               </div>
             </section>
 
-            {/* CONTACT */}
+           
             <section className="space-y-3">
               <h3 className="text-[16px] uppercase text-sprntText font-pp tracking-tight">
                 CONTACT
@@ -935,7 +933,7 @@ function QuoteModal({ onClose }: { onClose: () => void }) {
               </div>
             </section>
 
-            {/* FOOTER + QUOTE DISPLAY */}
+        
             <div className="flex flex-col gap-3 pt-4 border-t border-sprntBorder">
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
                 <p className="text-[11px] text-sprntText max-w-md pr-8">
@@ -1113,8 +1111,8 @@ function TrackingModal({ onClose }: { onClose: () => void }) {
     trackingInfo &&
     (() => {
       const { lat, lng } = trackingInfo.location;
-      const x = ((lng + 180) / 360) * 100; // 0–100%
-      const y = ((90 - lat) / 180) * 100; // 0–100%
+      const x = ((lng + 180) / 360) * 100; 
+      const y = ((90 - lat) / 180) * 100; 
       return {
         left: `${x}%`,
         top: `${y}%`,
@@ -1124,7 +1122,7 @@ function TrackingModal({ onClose }: { onClose: () => void }) {
   return (
     <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/70 backdrop-blur">
       <div className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-[#111111] border border-sprntBorder px-5 py-6 md:px-8 md:py-8">
-        {/* CLOSE */}
+       
         <button
           type="button"
           onClick={onClose}
@@ -1133,7 +1131,7 @@ function TrackingModal({ onClose }: { onClose: () => void }) {
           X
         </button>
 
-        {/* HEADER */}
+        
         <div className="space-y-2 pr-10">
           <h2 className="text-[24px] md:text-[32px] leading-tight font-pp">
             Track a parcel.
@@ -1145,10 +1143,10 @@ function TrackingModal({ onClose }: { onClose: () => void }) {
           </p>
         </div>
 
-        {/* FORM — hides after submit */}
+       
         {!trackingInfo && (
           <form onSubmit={handleSubmit} className="mt-6 space-y-8">
-            {/* TRACKING */}
+            
             <section className="space-y-3">
               <h3 className="text-[16px] uppercase text-sprntText font-pp tracking-tight">
                 TRACKING DETAILS
@@ -1177,7 +1175,7 @@ function TrackingModal({ onClose }: { onClose: () => void }) {
               </div>
             </section>
 
-            {/* CONTACT (for context, even if not used programmatically yet) */}
+            
             <section className="space-y-3">
               <h3 className="text-[16px] uppercase text-sprntText font-pp tracking-tight">
                 CONTACT
@@ -1207,7 +1205,7 @@ function TrackingModal({ onClose }: { onClose: () => void }) {
               </div>
             </section>
 
-            {/* SUBMIT */}
+           
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 pt-4 border-t border-sprntBorder">
               <p className="text-[11px] text-sprntText max-w-md pr-8">
                 Locations shown are{" "}
@@ -1242,7 +1240,7 @@ function TrackingModal({ onClose }: { onClose: () => void }) {
           </form>
         )}
 
-        {/* RESULT VIEW — map + details */}
+      
         {trackingInfo && (
           <div className="mt-6 space-y-4">
             <div className="space-y-1">
@@ -1264,9 +1262,9 @@ function TrackingModal({ onClose }: { onClose: () => void }) {
               </p>
             </div>
 
-            {/* MAP */}
+           
             <div className="mt-2 h-64 md:h-72 bg-[#151515] border border-sprntBorder rounded-sm relative overflow-hidden">
-              {/* Optional: put a placeholder map image in /public/map-placeholder.png */}
+           
               <img
                 src="/map-placeholder.png"
                 alt="Couldn't load map"
@@ -1298,7 +1296,7 @@ function TrackingModal({ onClose }: { onClose: () => void }) {
               </div>
             </div>
 
-            {/* FOOTER TEXT */}
+           
             <p className="text-[11px] text-[#7f7f7f] font-pp tracking-tight">
               For exact status, handover times, and delivery ETA, contact{" "}
               <span className="text-sprntAccent">+44 (0) 730 4178 216 </span>
@@ -1365,7 +1363,7 @@ function SiteNav({
         font-pp
       "
     >
-      {/* LEFT: links */}
+     
       <div className="flex items-center gap-[2px] md:gap-3 font-ocr">
         <nav className="flex items-center gap-[2px] md:gap-2">
           {navItems.map((item) => {
@@ -1461,9 +1459,9 @@ function SiteNav({
         </nav>
       </div>
 
-      {/* RIGHT: date + dashboard */}
+   
       <div className=" md:flex items-center gap-3 font-ocr">
-        {/* DATE TAGS (visible on desktop, left of button) */}
+       
         <div className="hidden md:flex items-center gap-[2px]">
           <NavTag>{day}</NavTag>
           <NavTag>{month}</NavTag>
@@ -1527,7 +1525,7 @@ function LandingHero() {
         backgroundImage: "url('/landing.png')",
       }}
     >
-      {/* put hero text/content here if you want it sitting on the image */}
+
     </section>
   );
 }
@@ -1547,7 +1545,7 @@ function SectionOne() {
         });
       },
       {
-        threshold: 0.4, // a bit earlier / smoother feeling
+        threshold: 0.4, 
       }
     );
 
@@ -1561,7 +1559,7 @@ function SectionOne() {
   return (
     <section className="relative z-10 bg-sprntAccent text-siliconOrange">
       <div className="relative min-h-[300vh]">
-        {/* STICKY VIEWPORT */}
+       
         <div
           className="
             sticky top-0
@@ -1573,7 +1571,7 @@ function SectionOne() {
             z-20
           "
         >
-          {/* HEADLINE */}
+          
           <div className="max-w-5xl leading-[0.90] font-pp space-y-2 md:space-y-3">
             <p className="text-[40px] md:text-[64px]">
               {COMMITMENT_STEPS.map((step, idx) => (
@@ -1594,7 +1592,7 @@ function SectionOne() {
             </p>
           </div>
 
-          {/* EXPLAINER – fixed to bottom of this sticky viewport */}
+         
           <p
             key={COMMITMENT_STEPS[activeIndex].id}
             className="
@@ -1614,7 +1612,7 @@ function SectionOne() {
           </p>
         </div>
 
-        {/* SCROLL STEPS */}
+       
         <div className="pointer-events-none">
           {COMMITMENT_STEPS.map((step, idx) => (
             <div
@@ -1648,7 +1646,7 @@ function Marquee() {
 
   return (
     <section
-      style={{ backgroundColor: "#151515" }} // anthracite, forced
+      style={{ backgroundColor: "#151515" }} 
       className="z-20 marquee-strip font-ocr text-sprntAccent"
     >
       <div className="marquee background-anthracite border-b border-siliconOrange py-3">
@@ -1679,16 +1677,16 @@ function SectionTwo() {
 
   return (
     <section className="relative z-30 bg-[#E2E1DF] text-black px-[20px]">
-      {/* sticky, full viewport shell */}
+      
       <div className="sticky top-0 pb-2 h-screen py-16 flex flex-col">
-        {/* HEADER */}
+        
         <h2 className="text-[48px] font-pp tracking-tight mb-4 pb-2">
           PRICE GUIDE
         </h2>
 
         <div className="w-full mb-2">
           <div className="flex pb-2 w-full border-[#151515]">
-            {/* FROM YOU */}
+          
             <button
               onClick={() => handleSwitch("fromYou")}
               className={`
@@ -1703,7 +1701,7 @@ function SectionTwo() {
               FROM LONDON, TO
             </button>
 
-            {/* TO YOU */}
+        
             <button
               onClick={() => handleSwitch("toYou")}
               className={`
@@ -1720,7 +1718,7 @@ function SectionTwo() {
           </div>
         </div>
 
-        {/* SCROLLABLE TABLE AREA INSIDE THE 100VH SECTION */}
+     
         <div className="flex-1 overflow-y-auto p-0 m-0 bg-[#E2E1DF]">
           <PricingTable
             data={data}
@@ -1745,7 +1743,7 @@ function PricingTable({
   return (
     <div className="overflow-x-auto h-full fade-in-up">
       <table className="w-full min-w-full border-collapse font-pp text-[14px] leading-tight">
-        {/* header – sticky “cities” panel */}
+      
         <thead className="sticky top-0 z-40">
           <tr className="bg-[#C6C6C8]">
             <th className="text-left font-normal px-4 py-3 whitespace-nowrap"></th>
@@ -1771,7 +1769,7 @@ function PricingTable({
           </tr>
         </thead>
 
-        {/* body – scrolls under header */}
+ 
         <tbody>
           {data.rows.map((row: any) => (
             <tr key={row.label} className="border-t border-[#C6C6C8]">
@@ -1818,7 +1816,7 @@ function Marquee2() {
 
   return (
     <section
-      style={{ backgroundColor: "#B74735" }} // anthracite, forced
+      style={{ backgroundColor: "#B74735" }} 
       className="z-20 marquee-strip font-ocr text-sprntText"
     >
       <div className="marquee background-sprntAccent border-b border-sprntText py-3">
@@ -1841,7 +1839,7 @@ function FooterSection() {
   return (
     <section className="relative z-40 mt-0 px-[20px] pt-[40px] bg-anthracite">
       <div className="w-[100%]">
-        {/* HERO SVG */}
+       
         <img
           src="/footer-hero.svg"
           alt="You have reached the Footer!"
@@ -1853,7 +1851,7 @@ function FooterSection() {
           className="w-full block md:hidden"
         />
 
-        {/* SUBTITLE */}
+       
         <p
           className="mt-8
     max-w-[1200px]
@@ -1876,7 +1874,6 @@ function FooterSection() {
           if you’ve scrolled this far. That said, we’ve got other cool products.
         </p>
 
-        {/* TOP STRIP: /25 / NVG8 / KANO */}
         <div
           className="mt-6 border-b border-sprntText pb-0 font-ocr text-[11px] uppercase tracking-[0.22em] text-sprntText flex gap-10 hidden md:block
 "
@@ -1889,7 +1886,7 @@ function FooterSection() {
           />
         </div>
 
-        {/* THREE PRODUCT CARDS */}
+     
         <div className="border-b border-sprntText pt-4 pb-6 grid gap-0 lg:grid-cols-3">
           <div className="flex flex-col gap-4 lg:pr-2 border-sprntText lg:border-r pb-8 md:pb-4">
             <img src="/ONE.svg" alt=" " className="w-full object-cover mt-4" />
