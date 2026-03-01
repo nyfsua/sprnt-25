@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, Link, href } from "react-router-dom";
+import { Routes, Route, Link, } from "react-router-dom";
 
 import Login from "./pages/Login";
 import CitiesPage from "./CitiesPage";
@@ -662,6 +662,7 @@ export default function App() {
               <SectionOne />
               <Marquee />
               <SectionTwo />
+              <Marquee2 />
               <FooterSection />
             </>
           }
