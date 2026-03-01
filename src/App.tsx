@@ -1,7 +1,8 @@
 import React from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, href } from "react-router-dom";
 
 import Login from "./pages/Login";
+import CitiesPage from "./CitiesPage";
 
 const COMMITMENT_STEPS = [
   {
@@ -649,21 +650,41 @@ export default function App() {
         onOpenQuote={() => setIsQuoteOpen(true)}
         onOpenTrack={() => setIsTrackOpen(true)}
       />
-      <LandingHero />
-      <div className="h-screen" /> {/* spacer */}
-      <SectionOne />
-      <Marquee />
-      <SectionTwo />
-      <Marquee2 />
-      <FooterSection />
+
       <Routes>
+        {/* Landing page */}
+        <Route
+          path="/"
+          element={
+            <>
+              <LandingHero />
+              <div className="h-screen" />
+              <SectionOne />
+              <Marquee />
+              <SectionTwo />
+              <FooterSection />
+            </>
+          }
+        />
+
+        {/* Standalone pages */}
         <Route path="/login" element={<Login />} />
+        <Route path="/cities" element={<CitiesPage />} />
+        
       </Routes>
-      {isQuoteOpen && <QuoteModal onClose={() => setIsQuoteOpen(false)} />}
-      {isTrackOpen && <TrackingModal onClose={() => setIsTrackOpen(false)} />}
+
+      {isQuoteOpen && (
+        <QuoteModal onClose={() => setIsQuoteOpen(false)} />
+      )}
+
+      {isTrackOpen && (
+        <TrackingModal onClose={() => setIsTrackOpen(false)} />
+      )}
     </div>
   );
 }
+
+
 
 function QuoteModal({ onClose }: { onClose: () => void }) {
   const [submitted, setSubmitted] = React.useState(false);
@@ -1337,6 +1358,10 @@ function SiteNav({
       type: "external" as const,
       href: "/login",
     },
+
+    { label: "SERVICE", 
+      type: "internal" as const, 
+      href: "/cities" },
   ];
 
   const [day, setDay] = React.useState("");
