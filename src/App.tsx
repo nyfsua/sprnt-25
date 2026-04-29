@@ -9,7 +9,7 @@ const COMMITMENT_STEPS = [
     id: "we-are-sprnt",
     label: "we are sprnt,",
     detail:
-      "whether you're shipping from agege to lekki, or from lagos to dakar, we've got you. we're also here to break the mold of boring courier services. we've got packaging to intrigue your customers, the latest tech in the business, flexible time slots, a large network of city-centre hubs, 24/7 support, carbon offsetting by recycling... did i mention lightning speed? the sprnt is not just a brand name.",
+      "whether you're shipping from agege to lekki, or from london to dakar, we've got you. we've got the latest tech in the business, flexible time slots, a large network of city-centre hubs, 24/7 support, carbon offsetting by recycling... did i mention lightning speed? the sprnt is not just a brand name.",
   },
   {
     id: "global-logistics",
