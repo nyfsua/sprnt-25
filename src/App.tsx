@@ -9,25 +9,27 @@ const COMMITMENT_STEPS = [
     id: "we-are-sprnt",
     label: "we are sprnt,",
     detail:
-      "whether you're shipping from agege to lekki, or from london to dakar, we've got you. we've got the latest tech in the business, flexible time slots, a large network of city-centre hubs, 24/7 support, carbon offsetting by recycling... did i mention lightning speed? the sprnt is not just a brand name.",
+      "whether you're shipping from agege to lekki or from london to dakar, the standard is the same. fast deliveries, modern technology, flexible collection windows, city-centre hubs and round-the-clock support. we're built to move quickly, and we do.
+
+",
   },
   {
     id: "global-logistics",
     label: "a logistics technology",
     detail:
-      "yes, the complex web of supply chains is the backbone of thriving businesses, but we already serve that. we started as a simple delivery solution for local businesses in lagos; the commercial and entertainment capital of africa. we know how to be cool. even though we are now an international logistics operation.",
+      "we started by helping businesses move goods through lagos fast. today, we operate internationally. the scale has changed, but our ethos hasn't: logistics should be fast, straightforward, and dependable.",
   },
   {
     id: "courier-company",
     label: "and courier company,",
     detail:
-      "upgrading to us preserves the core of your system, yet gives your customers a taste of another world. we don't just take your product to your customer; we let them know they're patronising quality. we let them know you have taste. because you chose us. i mean... is DHL this cool?",
+      "upgrading to us preserves the core of your system, yet serves your customers with the professionalism, speed and attention they deserve. we don't just take your product to your customer; we let them know they're patronising quality.",
   },
   {
     id: "making-a-commitment",
     label: "and we're making a promise.",
     detail:
-      "with a business model that aims to make getting things across, from and to africa more seamless, we intentionally reduced the paperwork involved in the whole process. fret not, we still have the necessary insurance covering our clients' items.",
+      "with a business model that aims to make getting things across, from and to africa more seamless, we've simplified the process wherever possible, reducing unnecessary paperwork while maintaining the compliance, documentation and insurance that protect every shipment.",
   },
 ];
 
