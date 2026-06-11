@@ -9,9 +9,7 @@ const COMMITMENT_STEPS = [
     id: "we-are-sprnt",
     label: "we are sprnt,",
     detail:
-      "whether you're shipping from agege to lekki or from london to dakar, the standard is the same. fast deliveries, modern technology, flexible collection windows, city-centre hubs and round-the-clock support. we're built to move quickly, and we do.
-
-",
+      "whether you're shipping from agege to lekki or from london to dakar, the standard is the same. fast deliveries, modern technology, flexible collection windows, city-centre hubs and round-the-clock support. we're built to move quickly, and we do.",
   },
   {
     id: "global-logistics",
