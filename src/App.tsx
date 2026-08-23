@@ -1,9 +1,6 @@
 import React from "react";
 import { Routes, Route, Link, } from "react-router-dom";
 
-import Login from "./pages/Login";
-import CitiesPage from "./CitiesPage";
-
 const COMMITMENT_STEPS = [
   {
     id: "we-are-sprnt",
@@ -667,10 +664,6 @@ export default function App() {
             </>
           }
         />
-
-        {/* Standalone pages */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/cities" element={<CitiesPage />} />
         
       </Routes>
 
@@ -1354,15 +1347,7 @@ function SiteNav({
       type: "external" as const,
       href: "mailto:sfyn@sprnt.one?subject=tell%20me%20more%20about%20spr.",
     },
-    {
-      label: "ACCOUNT",
-      type: "external" as const,
-      href: "/login",
-    },
-
-    { label: "SERVICE", 
-      type: "internal" as const, 
-      href: "/cities" },
+    
   ];
 
   const [day, setDay] = React.useState("");
